@@ -3,6 +3,9 @@ import { app, database } from './firebaseconfig.js';
 import { addDoc, collection } from 'firebase/firestore';
 import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword } from 'firebase/auth';
 import './lo.css';
+import { toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+import { Bounce } from "react-toastify";
 
 const auth = getAuth(app);
 
@@ -13,6 +16,9 @@ const AuthScreen = () => {
   const [error, setError] = useState('');
   const [isLogin, setIsLogin] = useState(false);
 
+  const notify = () => toast('Wow so easy !');
+
+  
   const handleSubmit = async (e) => {
     e.preventDefault();
     if (isLogin) {
@@ -20,26 +26,75 @@ const AuthScreen = () => {
         const userCredential = await signInWithEmailAndPassword(auth, email, password);
         const user = userCredential.user;
         const token = await user.getIdToken();
-        alert('Login successful! Token: ' + token);
+        
+        toast.success("Login successful!", {
+          position: "top-right",
+          autoClose: 3000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          theme: "light",
+          transition: Bounce,
+        });
+  
       } catch (err) {
-        setError('Error logging in: ' + err.message);
+        toast.error("Error logging in: " + err.message, {
+          position: "top-right",
+          autoClose: 5000,
+          hideProgressBar: false,
+          closeOnClick: false,
+          pauseOnHover: true,
+          draggable: true,
+          theme: "light",
+          transition: Bounce,
+          style: {
+            backgroundColor: "orange", // Optional: custom styling
+            color: "white",
+          },
+        });
       }
     } else {
       try {
         const userCredential = await createUserWithEmailAndPassword(auth, email, password);
         const user = userCredential.user;
-        const signupCol = collection(database, 'users');
+        const signupCol = collection(database, "users");
         await addDoc(signupCol, { name, email, password });
-        setName('');
-        setEmail('');
-        setPassword('');
-        setError('');
-        alert('User registered successfully! User ID: ' + user.uid);
+        
+        setName("");
+        setEmail("");
+        setPassword("");
+        
+        toast.success("User registered successfully!", {
+          position: "top-right",
+          autoClose: 3000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          theme: "light",
+          transition: Bounce,
+        });
+  
       } catch (err) {
-        setError('Error adding document: ' + err.message);
+        toast.error("Error registering user: " + err.message, {
+          position: "top-right",
+          autoClose: 5000,
+          hideProgressBar: false,
+          closeOnClick: false,
+          pauseOnHover: true,
+          draggable: true,
+          theme: "light",
+          transition: Bounce,
+          style: {
+            backgroundColor: "orange",
+            color: "white",
+          },
+        });
       }
     }
   };
+  
 
   return (
     <div className="auth-container">
