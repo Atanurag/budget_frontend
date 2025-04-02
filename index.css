@@ -1,0 +1,35 @@
+.custom-tabs.active-color-override .ant-tabs-tab:nth-child(1) {
+  color: red;
+}
+
+.custom-tabs.active-color-override .ant-tabs-tab:nth-child(2) {
+  color: orange;
+}
+
+.custom-tabs.active-color-override .ant-tabs-tab:nth-child(3) {
+  color: green;
+}
+
+.custom-tabs .ant-tabs-tab.ant-tabs-tab-active:nth-child(1) .ant-tabs-tab-btn {
+  color: red;
+}
+
+.custom-tabs .ant-tabs-tab.ant-tabs-tab-active:nth-child(2) .ant-tabs-tab-btn {
+  color: orange;
+}
+
+.custom-tabs .ant-tabs-tab.ant-tabs-tab-active:nth-child(3) .ant-tabs-tab-btn {
+  color: green;
+}
+
+.custom-tabs .ant-tabs-tab:nth-child(1).ant-tabs-tab-active ~ .ant-tabs-ink-bar {
+  background: red;
+}
+
+.custom-tabs .ant-tabs-tab:nth-child(2).ant-tabs-tab-active ~ .ant-tabs-ink-bar {
+  background: orange;
+}
+
+.custom-tabs .ant-tabs-tab:nth-child(3).ant-tabs-tab-active ~ .ant-tabs-ink-bar {
+  background: green;
+}
