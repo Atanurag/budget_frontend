@@ -1,6 +1,7 @@
 import React from 'react';
 import './index.css';
 import { Routes, Route } from 'react-router-dom';
+import Dashboard from './pages/Dashboard';
 
 // import { Collapse } from 'antd';
 // import { Space, Table, Tag } from 'antd';
@@ -8,7 +9,6 @@ import { Routes, Route } from 'react-router-dom';
 // const { Panel } = Collapse;
 // import { Radio, Tabs } from 'antd';
 // import { Button, Drawer } from 'antd';
-import Lo from './lo.js';
 const App = () => {
 
 
@@ -18,7 +18,7 @@ const App = () => {
       <Routes>
         <Route
           path="/"
-          element={ <Lo />}
+          element={<Dashboard/>}
         />
 </Routes>
  

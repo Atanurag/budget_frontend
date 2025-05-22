@@ -1,0 +1,44 @@
+.small-card {
+    display: flex;
+    align-items: center;
+    background: white;
+    border-radius: 10px;
+    padding: 12px 20px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    width: 220px; /* small width */
+    height: 70px; /* small height */
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  }
+  
+  .icon-container {
+    background-color: #4caf50; /* green background */
+    color: white;
+    border-radius: 50%;
+    padding: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 22px;
+    margin-right: 15px;
+    flex-shrink: 0;
+  }
+  
+  .text-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+  
+  .label {
+    font-size: 14px;
+    font-weight: 600;
+    color: #666;
+    margin-bottom: 4px;
+  }
+  
+  .value {
+    font-size: 22px;
+    font-weight: 700;
+    color: #222;
+  }
+  
