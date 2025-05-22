@@ -1,5 +1,6 @@
 import React, { useState,useRef,useEffect } from 'react';
 import { DatePicker, Button,Table } from 'antd';
+import { useNavigate } from "react-router-dom";
 import { Input } from "antd";
 const { Search } = Input;
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -14,6 +15,8 @@ const Dashboard = () => {
   const [summaryInfo, setSummaryInfo] = useState({});
   const [filtersParameter, setFiltersParameter] = useState({});
   const searchInput = useRef(null);
+  const navigate = useNavigate();
+
   const submit =()=>{
 
   }
@@ -101,7 +104,9 @@ const columns = [
     render: (text, record) => (
         <FontAwesomeIcon 
             icon={faPenToSquare}
-            onClick={() => {}}
+            onClick={() => { navigate(`/transaction/edit/${record.key}`, { state: { propType: "Edit Transaction:" } });
+            ;
+          }}
         />
     ),
 },
@@ -119,7 +124,7 @@ const columns = [
 ];
 const data = [
   {
-    key: '1',
+    key: '682f2214faffd3bf671de2d3',
     title: 'John Brown',
     category: "opeopeiroiewor uwew",
     amount: 3000,
@@ -141,7 +146,9 @@ const data = [
       <Button type="primary">Submit</Button>
 
 
-      <Button type="primary">Add New Transaction</Button>
+      <Button type="primary" onClick={()=>{
+         navigate(`/transaction/add`, { state: { propType: "Add New Transaction" } })
+      }}>Add New Transaction</Button>
 
 
       <div className="small-card">

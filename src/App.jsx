@@ -2,6 +2,7 @@ import React from 'react';
 import './index.css';
 import { Routes, Route } from 'react-router-dom';
 import Dashboard from './pages/Dashboard';
+import TransactionManagement from './pages/TransactionManagement';
 
 // import { Collapse } from 'antd';
 // import { Space, Table, Tag } from 'antd';
@@ -14,11 +15,18 @@ const App = () => {
 
   return (
     
-      
+
       <Routes>
+<Route path="/"
+element={<Dashboard/>} />
+
         <Route
-          path="/"
-          element={<Dashboard/>}
+          path="/transaction/add"
+          element={<TransactionManagement/>}
+        />
+         <Route
+          path="/transaction/edit/:transactionId"
+          element={<TransactionManagement/>}
         />
 </Routes>
  
