@@ -7,19 +7,32 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faSearch, faDownload,faTrash, faFileExcel,faPenToSquare } from "@fortawesome/free-solid-svg-icons";
 import dayjs from 'dayjs';
 import '../css/Dashboard.css';
-
+import { handleAPICall, notificationDisplay } from "../components/Utils";
 const monthFormat = 'YYYY/MM';
 
 const Dashboard = () => {
-  const [budgetMonth, setBudgetMonth] = useState('2025/05');
+  const [budgetMonth, setBudgetMonth] = useState(dayjs('2025/05'));
   const [summaryInfo, setSummaryInfo] = useState({});
   const [filtersParameter, setFiltersParameter] = useState({});
   const searchInput = useRef(null);
   const navigate = useNavigate();
 
-  const submit =()=>{
+  const onSubmit = () => {
+    let summaryUrl = `https://6d4e0550-535f-4581-9751-7162b32bf5da-00-7br79xy2c9sc.sisko.replit.dev/api/transaction/summary`;
+    const postObj = {
+        date: budgetMonth.format('YYYY/MM'),
+    }
+    handleAPICall(summaryUrl, "POST", postObj).then(res => {
+        if (res.status === "success") {
+          setSummaryInfo(res.data)
+            console.log(res)
+        }
+        else{
 
-  }
+        }
+       
+    })
+};
   const onChange = (date, dateString) => {
     console.log(date, dateString);
     setBudgetMonth(dateString);
@@ -133,6 +146,9 @@ const data = [
  
 ];
 
+useEffect(()=>{
+onSubmit()
+},[])
 
   return (
     <>
