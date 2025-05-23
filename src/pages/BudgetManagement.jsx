@@ -23,8 +23,8 @@ const BudgetManagement = () => {
     const [budgetDetail, setBudgetDetail] = useState();
     useEffect(() => {
         if (budgetId) {
-            const txnUrl = `https://6d4e0550-535f-4581-9751-7162b32bf5da-00-7br79xy2c9sc.sisko.replit.dev/api/transaction/${transactionId}`;
-            handleAPICall(txnUrl, "GET").then(res => {
+            const budgetUrl = `https://6d4e0550-535f-4581-9751-7162b32bf5da-00-7br79xy2c9sc.sisko.replit.dev/api/budget/${budgetId}`;
+            handleAPICall(budgetUrl, "GET").then(res => {
                 setBudgetDetail(res.data);
                 console.log(res)
             });
