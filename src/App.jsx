@@ -4,6 +4,7 @@ import { Routes, Route } from 'react-router-dom';
 import Dashboard from './pages/Dashboard';
 import TransactionManagement from './pages/TransactionManagement';
 import Budget from './pages/Budget';
+import BudgetManagement from './pages/BudgetManagement';
 
 // import { Collapse } from 'antd';
 // import { Space, Table, Tag } from 'antd';
@@ -31,6 +32,16 @@ element={<Dashboard/>} />
         />
         <Route path="/budget"
 element={<Budget/>} />
+
+
+<Route
+          path="/budget/add"
+          element={<BudgetManagement/>}
+        />
+         <Route
+          path="/budget/edit/:budgetId"
+          element={<BudgetManagement/>}
+        />
 </Routes>
  
   

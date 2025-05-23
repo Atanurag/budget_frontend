@@ -6,45 +6,43 @@ import { faArrowLeft } from '@fortawesome/free-solid-svg-icons';
 import { handleAPICall, notificationDisplay } from "../components/Utils";
 import dayjs from 'dayjs';
 import '../css/Transaction.css';
-const TransactionManagement = () => {
+const BudgetManagement = () => {
 
   
     const [form] = Form.useForm();
-    const { transactionId } = useParams();
+    const { budgetId } = useParams();
     const location = useLocation();
     const navigate = useNavigate()
-    const propType = location.state?.propType || 'Add New Transaction';
+    const propType = location.state?.propType || 'Add New Budget';
     // const backToUnloadingTankManagement = () => {
     //     history.push('/profile/unloading-tank-management');
     // };
     
     const [submitLoading, setSubmitLoading] = useState(false);
     const [submitDisabled, setSubmitDisabled] = useState(false);
-    const [txnDetail, setTxnDetail] = useState();
+    const [budgetDetail, setBudgetDetail] = useState();
     useEffect(() => {
-        if (transactionId) {
+        if (budgetId) {
             const txnUrl = `https://6d4e0550-535f-4581-9751-7162b32bf5da-00-7br79xy2c9sc.sisko.replit.dev/api/transaction/${transactionId}`;
             handleAPICall(txnUrl, "GET").then(res => {
-                setTxnDetail(res.data);
+                setBudgetDetail(res.data);
                 console.log(res)
             });
         }
     }, [])
     useEffect(() => {
         form.setFieldsValue({
-            title:txnDetail?.title,
-            amount: txnDetail?.amount,
-            type: txnDetail?.type,
-            category: txnDetail?.category,
-            date:  dayjs(txnDetail?.date)
+            title:budgetDetail?.title,
+            amount: budgetDetail?.amount,
+            date:  dayjs(budgetDetail?.date)
         })
-    }, [form, txnDetail])
+    }, [form, budgetDetail])
     
     const onFinish = (values) => {
         console.log(values.date.format('YYYY/MM'))
         setSubmitLoading(true);
         setSubmitDisabled(true);
-        let TransactionUrl = `https://6d4e0550-535f-4581-9751-7162b32bf5da-00-7br79xy2c9sc.sisko.replit.dev/api/transaction/`;
+        let budgetUrl = `https://6d4e0550-535f-4581-9751-7162b32bf5da-00-7br79xy2c9sc.sisko.replit.dev/api/budget/`;
         const postObj = {
             title: values.title,
             amount: values.amount,
@@ -52,12 +50,12 @@ const TransactionManagement = () => {
             category: values.category,
             date: values.date.format('YYYY/MM'),
         }
-        if (transactionId) {
-            TransactionUrl = `https://6d4e0550-535f-4581-9751-7162b32bf5da-00-7br79xy2c9sc.sisko.replit.dev/api/transaction/${transactionId}`;
+        if (budgetId) {
+            budgetUrl = `https://6d4e0550-535f-4581-9751-7162b32bf5da-00-7br79xy2c9sc.sisko.replit.dev/api/budget/${budgetId}`;
         }
         
-        let method = transactionId ? "PUT" : "POST"
-        handleAPICall(TransactionUrl, method, postObj).then(res => {
+        let method = budgetId ? "PUT" : "POST"
+        handleAPICall(budgetUrl, method, postObj).then(res => {
             setSubmitLoading(false);
             setSubmitDisabled(false);
             if (res.status === "success") {
@@ -181,4 +179,4 @@ const TransactionManagement = () => {
         </div>
     );
 };
-export default TransactionManagement;
+export default BudgetManagement;
