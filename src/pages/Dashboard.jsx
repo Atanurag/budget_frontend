@@ -74,7 +74,7 @@ const Dashboard = () => {
         onKeyDown={(e) => e.stopPropagation()}
       >
         <Search
-        //   allowClear
+           allowClear
           ref={searchInput}
           placeholder={`Search ${dataIndex}`}
           value={selectedKeys[0]}
@@ -84,17 +84,10 @@ const Dashboard = () => {
           }}
         //   onPressEnter={() => setTimeout(confirm)}
         //   onSearch={(searchText) => setTimeout(() => searchText === "" ? confirm({closeDropdown: false}) : confirm() )}
-        onPressEnter={() => { setTimeout(() => { submit(); confirm(); }); }}
-        onSearch={(searchText) => { setTimeout(() => {
-               if (searchText === "") {
-                    submit();
-                    confirm({ closeDropdown: true });
-                } else {
-                    submit();
-                    confirm();
-                }
-            });
-        }}
+      
+        onPressEnter={() => setTimeout(confirm)}
+        onSearch={(searchText) => setTimeout(() => searchText === "" ? confirm({closeDropdown: false}) : confirm() )}
+
         />
       </div>
     ),
@@ -217,8 +210,10 @@ onSubmit()
       </div>
     </div>
 
-<span>Income table</span>
+    <span>Income table</span>
 <Table columns={columns} dataSource={incomeList} />
+<span>Expense table</span>
+<Table columns={columns} dataSource={expenseList} />
     </>
   );
 };
