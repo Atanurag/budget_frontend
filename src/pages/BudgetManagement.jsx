@@ -39,7 +39,6 @@ const BudgetManagement = () => {
     }, [form, budgetDetail])
     
     const onFinish = (values) => {
-        console.log(values.date.format('YYYY/MM'))
         setSubmitLoading(true);
         setSubmitDisabled(true);
         let budgetUrl = `https://6d4e0550-535f-4581-9751-7162b32bf5da-00-7br79xy2c9sc.sisko.replit.dev/api/budget/`;
@@ -57,8 +56,9 @@ const BudgetManagement = () => {
             setSubmitLoading(false);
             setSubmitDisabled(false);
             if (res.status === "success") {
+                console.log(res.message)
                 notificationDisplay("success", res.message);
-                navigate(-1)
+                navigate(-1);
             }
             else {
                 notificationDisplay("error", res.message);
@@ -76,7 +76,7 @@ const BudgetManagement = () => {
                 <Col span={24}>
                     <Card className="org-header-container">
                         <div className="org-header-text"> <FontAwesomeIcon icon={faArrowLeft} onClick={() => navigate('/')} style={{ marginRight: 40, cursor: 'pointer' }} />
-                            {propType} {transactionId}
+                            {propType} {budgetId}
                         </div>
                     </Card>
                 </Col>
