@@ -20,37 +20,25 @@ const TransactionManagement = () => {
     
     const [submitLoading, setSubmitLoading] = useState(false);
     const [submitDisabled, setSubmitDisabled] = useState(false);
-    // useEffect(() => {
-    //     if (unloadingTankId) {
-    //         const unloadingTankDetailsUrl = `${urlOrigin}/api/v1/fuel/get-unloading-tank/?tank_id=${unloadingTankId}`;
-    //         handleAPICall(unloadingTankDetailsUrl, "GET").then(res => {
-    //             setUnloadingTankDetails(res.response_object);
-    //         });
-    //     }
-    //     const stationUrl = `${urlOrigin}/api/v1/fuel/stations-list/`;
-    //     handleAPICall(stationUrl,"POST",{all_stations:true}).then(res => {
-    //         setStationList(convertApiToSelect(res.data.stations_list,"station"));
-    //     });
-    // }, [])
-    // useEffect(() => {
-    //     form.setFieldsValue({
-    //         weightBridgeName: unloadingTankDetails?.name_weighbridge,
-    //         station: unloadingTankDetails?.station_id,
-    //         tankerNumber: unloadingTankDetails?.tanker_number,
-    //         grossWeight: unloadingTankDetails?.gross_weight,
-    //         // grossUom: unloadingTankDetails?.gross_uom,
-    //         grossDate: unloadingTankDetails?.gross_date ? dayjs(unloadingTankDetails?.gross_date) : undefined,
-    //         // grossTime: unloadingTankDetails?.gross_time ? dayjs(unloadingTankDetails?.gross_time, 'HH:mm') : undefined,
-    //         tareWeight: unloadingTankDetails?.tare_weight,
-    //         // tareUom: unloadingTankDetails?.tare_uom,
-    //         tareDate: unloadingTankDetails?.tare_date ? dayjs(unloadingTankDetails?.tare_date) : undefined,
-    //         tareTime: unloadingTankDetails?.tare_time ? dayjs(unloadingTankDetails?.tare_time, 'HH:mm') : undefined,
-    //         netWeight: unloadingTankDetails?.net_weight,
-    //         netDate: unloadingTankDetails?.net_date ? dayjs(unloadingTankDetails?.net_date) : undefined,
-    //         // netUom: unloadingTankDetails?.net_uom,
-    //         charges: unloadingTankDetails?.charges,
-    //     })
-    // }, [form, unloadingTankDetails])
+    const [txnDetail, setTxnDetail] = useState();
+    useEffect(() => {
+        if (transactionId) {
+            const txnUrl = `https://6d4e0550-535f-4581-9751-7162b32bf5da-00-7br79xy2c9sc.sisko.replit.dev/api/transaction/${transactionId}`;
+            handleAPICall(txnUrl, "GET").then(res => {
+                setTxnDetail(res.data);
+                console.log(res)
+            });
+        }
+    }, [])
+    useEffect(() => {
+        form.setFieldsValue({
+            title:txnDetail?.title,
+            amount: txnDetail?.amount,
+            type: txnDetail?.type,
+            category: txnDetail?.category,
+            date:  dayjs(txnDetail?.date)
+        })
+    }, [form, txnDetail])
     
     const onFinish = (values) => {
         console.log(values.date.format('YYYY/MM'))
