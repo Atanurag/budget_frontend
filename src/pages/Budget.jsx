@@ -90,6 +90,13 @@ onSubmit()
       
 
       {expense ? expense : `no expense added for ${budgetMonth.format(monthFormat)}`}
+
+
+      <span onClick={()=>{
+         navigate(`/budget/edit/${budgetInfo._id}`, { state: { propType: "Edit Budget" } })
+      }
+    
+    }>i</span>
     </>
   );
 };
