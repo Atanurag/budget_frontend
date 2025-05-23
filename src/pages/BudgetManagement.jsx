@@ -46,8 +46,6 @@ const BudgetManagement = () => {
         const postObj = {
             title: values.title,
             amount: values.amount,
-            type: values.type,
-            category: values.category,
             date: values.date.format('YYYY/MM'),
         }
         if (budgetId) {
@@ -106,35 +104,6 @@ const BudgetManagement = () => {
                                     {
                                         required: true,
                                         message: 'Please input your title!',
-                                    },
-                                ]}
-                                hasFeedback
-                            >
-                                <Input />
-                            </Form.Item>
-                            <Form.Item label="Type" name="type"
-                                rules={[
-                                    {
-                                        required: true,
-                                        message: 'Please select your type!',
-                                    },
-                                ]}
-                                hasFeedback
-                            >
-                                <Select
-                                    showSearch
-                                    optionFilterProp="children"
-                                    filterOption={(input, option) =>
-                                        (option?.label ?? '').toLowerCase().includes(input.toLowerCase())
-                                    }
-                                    options={[{value:'income',label:'Income'},{value:'expense',label:'Expense'}]}
-                                />
-                            </Form.Item>
-                            <Form.Item label="Category" name="category"
-                                rules={[
-                                    {
-                                        required: true,
-                                        message: 'Please input your category!',
                                     },
                                 ]}
                                 hasFeedback
