@@ -1,10 +1,10 @@
 import React, { useState,useRef,useEffect } from 'react';
-import { DatePicker, Button,Table } from 'antd';
+import { DatePicker, Button,Table,Popconfirm } from 'antd';
 import { useNavigate } from "react-router-dom";
 import { Input } from "antd";
 const { Search } = Input;
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faSearch, faDownload,faTrash, faFileExcel,faPenToSquare } from "@fortawesome/free-solid-svg-icons";
+import { faSearch, faDownload,faTrash, faFileExcel,faPenToSquare,faCircleInfo  } from "@fortawesome/free-solid-svg-icons";
 import dayjs from 'dayjs';
 import '../css/Dashboard.css';
 import { handleAPICall, notificationDisplay } from "../components/Utils";
@@ -57,6 +57,28 @@ const Dashboard = () => {
      
   })
 
+};
+const onDelete = (id) => {
+  if(!id){
+    return;
+  }
+  setLoading(true);
+  let deleteUrl = `https://6d4e0550-535f-4581-9751-7162b32bf5da-00-7br79xy2c9sc.sisko.replit.dev/api/transaction/${id}`;
+  
+  handleAPICall(deleteUrl, "DELETE").then(res => {
+      if (res.status === "success") {
+        console.log(res)
+        notificationDisplay('success',res.message)
+        setLoading(false)
+      }
+      else{
+    notificationDisplay('error',res.message)
+    setLoading(false)
+
+
+      }
+     
+  })
 };
   const onChange = (date, dateString) => {
     console.log(date, dateString);
@@ -134,6 +156,7 @@ const columns = [
     key: 'edit',
     render: (text, record) => (
         <FontAwesomeIcon 
+        style={{cursor:'pointer'}}
             icon={faPenToSquare}
             onClick={() => { navigate(`/transaction/edit/${record.key}`, { state: { propType: "Edit Transaction:" } });
             ;
@@ -145,10 +168,41 @@ const columns = [
   title: 'Delete',
   key: 'delete',
   render: (text, record) => (
-      <FontAwesomeIcon 
+
+
+<Popconfirm
+                                    title="Delete This Transaction"
+                                    description="Are you sure you want to delete?"
+                                    okText="Yes"
+                                    cancelText="No"
+                                    icon={<FontAwesomeIcon icon={faCircleInfo} style={{ color: '#2196F3',fontSize:'14px',marginRight:'6px' }}  />}
+                                    onConfirm={() => {
+                                      onDelete(record.key)
+                                    }}
+                                    okButtonProps={{
+                                    style: {
+                                        fontSize: '14px',
+                                        //backgroundColor: 'var(--primary-client-color)',
+                                    }
+                                    }}
+                                    cancelButtonProps={{
+                                        style: {
+                                            fontSize: '14px'
+                                        }
+                                        }}
+                                >   
+                               <FontAwesomeIcon 
+      style={{cursor:'pointer'}}
           icon={faTrash}
-          onClick={() => {}}
       />
+                                </Popconfirm>
+
+
+
+      
+
+
+
   ),
 },
  
@@ -186,6 +240,11 @@ onSubmit()
       <Button type="primary" onClick={()=>{
          navigate(`/transaction/add`, { state: { propType: "Add New Transaction" } })
       }}>Add New Transaction</Button>
+
+
+<Button type="primary" onClick={()=>{
+         navigate(`/budget`)
+      }}>Access Your Budget</Button>
 
 
     <div className="small-card">
