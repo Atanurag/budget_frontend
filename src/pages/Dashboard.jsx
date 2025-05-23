@@ -8,34 +8,59 @@ import { faSearch, faDownload,faTrash, faFileExcel,faPenToSquare } from "@fortaw
 import dayjs from 'dayjs';
 import '../css/Dashboard.css';
 import { handleAPICall, notificationDisplay } from "../components/Utils";
+import { SpaceContext } from 'antd/es/space';
 const monthFormat = 'YYYY/MM';
 
 const Dashboard = () => {
   const [budgetMonth, setBudgetMonth] = useState(dayjs('2025/05'));
   const [summaryInfo, setSummaryInfo] = useState({});
+  const [incomeList,setIncomeList] = useState([]);
+  const [expenseList,setExpenseList] = useState([]);
   const [filtersParameter, setFiltersParameter] = useState({});
+  const [loading, setLoading] = useState(false)
   const searchInput = useRef(null);
   const navigate = useNavigate();
 
   const onSubmit = () => {
-    let summaryUrl = `https://6d4e0550-535f-4581-9751-7162b32bf5da-00-7br79xy2c9sc.sisko.replit.dev/api/transaction/summary`;
+    setLoading(true)
     const postObj = {
-        date: budgetMonth.format('YYYY/MM'),
-    }
+      date: budgetMonth.format('YYYY/MM'),
+  }
+    let summaryUrl = `https://6d4e0550-535f-4581-9751-7162b32bf5da-00-7br79xy2c9sc.sisko.replit.dev/api/transaction/summary`;
+    
     handleAPICall(summaryUrl, "POST", postObj).then(res => {
         if (res.status === "success") {
-          setSummaryInfo(res.data)
+          setSummaryInfo(res)
             console.log(res)
+            setLoading(false)
         }
         else{
+          setLoading(false)
 
         }
        
     })
+    let txnDetailUrl = `https://6d4e0550-535f-4581-9751-7162b32bf5da-00-7br79xy2c9sc.sisko.replit.dev/api/transaction/txn-details`;
+    handleAPICall(txnDetailUrl, "POST", postObj).then(res => {
+      if (res.status === "success") {
+        setIncomeList(res.income.map(({ _id, ...rest }) => ({
+          key: _id,
+          ...rest
+        })));
+        setExpenseList(res.expense.map(({ _id, ...rest }) => ({
+          key: _id,
+          ...rest
+        })));
+          console.log(res);
+      }
+      
+     
+  })
+
 };
   const onChange = (date, dateString) => {
     console.log(date, dateString);
-    setBudgetMonth(dateString);
+    setBudgetMonth(date);
   };
   const disabledDate = (current) => {
     return current && current.isBefore(dayjs().startOf("month"), "month");
@@ -107,9 +132,9 @@ const columns = [
   },
   {
     title:'Month',
-    dataIndex:'month',
-    key:'month',
-    ...getColumnSearchProps('month'),
+    dataIndex:'date',
+    key:'date',
+    ...getColumnSearchProps('date'),
   },
   {
     title: 'Edit Details',
@@ -152,6 +177,7 @@ onSubmit()
 
   return (
     <>
+    {loading && <span>loading ...</span>}
       <DatePicker
         defaultValue={dayjs(budgetMonth, monthFormat)}
         format={monthFormat}
@@ -159,7 +185,9 @@ onSubmit()
         onChange={onChange}
         disabledDate={disabledDate}
       />
-      <Button type="primary">Submit</Button>
+      <Button type="primary"  onClick={()=>{
+        onSubmit()
+      }}>Submit</Button>
 
 
       <Button type="primary" onClick={()=>{
@@ -167,15 +195,30 @@ onSubmit()
       }}>Add New Transaction</Button>
 
 
-      <div className="small-card">
-      <div className="icon-container">{90}</div>
+    <div className="small-card">
+      <div className="icon-container">P</div>
       <div className="text-container">
-        <div className="label">{90}</div>
-        <div className="value">{9}</div>
+        <div className="label">Total Income</div>
+        <div className="value">{summaryInfo?.totalIncome}</div>
+      </div>
+    </div>
+    <div className="small-card">
+      <div className="icon-container">P</div>
+      <div className="text-container">
+        <div className="label">Total Expense</div>
+        <div className="value">{summaryInfo?.totalExpense}</div>
+      </div>
+    </div>
+    <div className="small-card">
+      <div className="icon-container">P</div>
+      <div className="text-container">
+        <div className="label">Total Balance</div>
+        <div className="value">{summaryInfo?.balance}</div>
       </div>
     </div>
 
-<Table columns={columns} dataSource={data} />;
+<span>Income table</span>
+<Table columns={columns} dataSource={incomeList} />
     </>
   );
 };
