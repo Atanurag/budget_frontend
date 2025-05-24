@@ -20,6 +20,7 @@ const Dashboard = () => {
   const [incomeList,setIncomeList] = useState([]);
   const [expenseList,setExpenseList] = useState([]);
   const [filtersParameter, setFiltersParameter] = useState({});
+  const [dateView, setDateView] = useState(dayjs(budgetMonth, monthFormat).format('MMMM YYYY'))
   const [loading, setLoading] = useState(false)
   const searchInput = useRef(null);
   const navigate = useNavigate();
@@ -29,11 +30,12 @@ const Dashboard = () => {
     const postObj = {
       date: budgetMonth.format('YYYY/MM'),
   }
-    let summaryUrl = `https://6d4e0600-535f-4581-9751-7162b32bf5da-00-7br79xy2c9sc.sisko.replit.dev/api/transaction/summary`;
+    let summaryUrl = `https://6d4e0550-535f-4581-9751-7162b32bf5da-00-7br79xy2c9sc.sisko.replit.dev/api/transaction/summary`;
     
     handleAPICall(summaryUrl, "POST", postObj).then(res => {
         if (res.status === "success") {
           setSummaryInfo(res)
+          setDateView(dayjs(budgetMonth, monthFormat).format('MMMM YYYY'));
             console.log(res)
             setLoading(false)
         }
@@ -43,7 +45,7 @@ const Dashboard = () => {
         }
        
     })
-    let txnDetailUrl = `https://6d4e0600-535f-4581-9751-7162b32bf5da-00-7br79xy2c9sc.sisko.replit.dev/api/transaction/txn-details`;
+    let txnDetailUrl = `https://6d4e0550-535f-4581-9751-7162b32bf5da-00-7br79xy2c9sc.sisko.replit.dev/api/transaction/txn-details`;
     handleAPICall(txnDetailUrl, "POST", postObj).then(res => {
       if (res.status === "success") {
         setIncomeList(res.income.map(({ _id, ...rest }) => ({
@@ -66,7 +68,7 @@ const onDelete = (id) => {
     return;
   }
   setLoading(true);
-  let deleteUrl = `https://6d4e0600-535f-4581-9751-7162b32bf5da-00-7br79xy2c9sc.sisko.replit.dev/api/transaction/${id}`;
+  let deleteUrl = `https://6d4e0550-535f-4581-9751-7162b32bf5da-00-7br79xy2c9sc.sisko.replit.dev/api/transaction/${id}`;
   
   handleAPICall(deleteUrl, "DELETE").then(res => {
       if (res.status === "success") {
@@ -265,7 +267,7 @@ const onBudget = () =>{
 
 
 <div className="as-on-container">
-  <div className="as-on-text">{dayjs(budgetMonth, monthFormat).format('MMMM YYYY')}</div>
+  <div className="as-on-text">{dateView}</div>
 </div>
 
 
@@ -596,12 +598,12 @@ const onBudget = () =>{
 <BarChart chartData={incomeList.map(({ amount,category, ...rest }) => ({
          value: amount,
          name : category
-        }))} xLabel={'Income Category'} yLabel={'Income Amount'}/>
+        }))} xLabel={'Income Category'} yLabel={'Income Amount'} title={'Income Summary'}/>
 
 <BarChart chartData={expenseList.map(({ amount,category, ...rest }) => ({
          value: amount,
          name : category
-        }))} xLabel={'Expense Category'} yLabel={'Expense Amount'}/>
+        }))} xLabel={'Expense Category'} yLabel={'Expense Amount'} title={'Expense Summary'}/>
 </div>
 
 <PieChart
@@ -610,6 +612,7 @@ const onBudget = () =>{
     { label: "Total Expense", value: 30000 },
     { label: "Total Balance", value: 20000 },
   ]}
+  title={dateView}
 />
 
     </>

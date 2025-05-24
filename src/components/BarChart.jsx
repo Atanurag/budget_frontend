@@ -1,23 +1,24 @@
 import React, { useEffect, useRef } from "react";
 import * as d3 from "d3";
-import "../css/BarChart.css"; // your CSS styles
+import "../css/BarChart.css"; // Make sure this file includes updated styles below
 
-const BarChart = ({ chartData, xLabel, yLabel }) => {
+const BarChart = ({ chartData, xLabel, yLabel, title }) => {
   const chartRef = useRef();
 
   useEffect(() => {
-    const margin = { top: 20, right: 30, bottom: 50, left: 60 }; // increased bottom & left for labels
-    const width = 600 - margin.left - margin.right;
+    const margin = { top: 20, right: 30, bottom: 50, left: 60 };
+    const width = 500 - margin.left - margin.right;
     const height = 300 - margin.top - margin.bottom;
 
-    // Clear any previous chart
     d3.select(chartRef.current).select("svg").remove();
 
     const svg = d3
       .select(chartRef.current)
       .append("svg")
-      .attr("width", width + margin.left + margin.right)
-      .attr("height", height + margin.top + margin.bottom)
+      .attr("viewBox", `0 0 ${width + margin.left + margin.right} ${height + margin.top + margin.bottom}`)
+      .attr("preserveAspectRatio", "xMidYMid meet")
+      .style("width", "100%")
+      .style("height", "auto")
       .append("g")
       .attr("transform", `translate(${margin.left},${margin.top})`);
 
@@ -34,9 +35,14 @@ const BarChart = ({ chartData, xLabel, yLabel }) => {
 
     svg.append("g")
       .attr("transform", `translate(0,${height})`)
-      .call(d3.axisBottom(x));
+      .call(d3.axisBottom(x))
+      .selectAll("text")
+      .style("font-size", "12px");
 
-    svg.append("g").call(d3.axisLeft(y));
+    svg.append("g")
+      .call(d3.axisLeft(y))
+      .selectAll("text")
+      .style("font-size", "12px");
 
     // X-axis label
     svg.append("text")
@@ -87,7 +93,7 @@ const BarChart = ({ chartData, xLabel, yLabel }) => {
 
   return (
     <div className="chart-card">
-      <div className="chart-title">Sales Overview</div>
+      <div className="chart-title">{title}</div>
       <div ref={chartRef} className="bar-chart-container" />
     </div>
   );
