@@ -56,11 +56,11 @@ export const handleAPICall = async (url, type, payload = {}, contentType = "appl
     const apiType = type.toUpperCase();
 
     // To handle if user clears cache after authentication
-    if(authToken === null && pathname !== '/login'){
-        // history.push('/login');
-        window.location.pathname = "/login";
-        return;
-    }
+    // if(authToken === null && pathname !== '/login'){
+    //     // history.push('/login');
+    //     window.location.pathname = "/login";
+    //     return;
+    // }
 
     // To handle only basic method definitions for now
     if (!ALLOWED_METHODS.includes(apiType)) {
