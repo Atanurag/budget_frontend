@@ -51,15 +51,18 @@ const PieChart = ({ data }) => {
       .style("stroke-width", "2px")
       .on("mouseover", (event, d) => {
         tooltip
-  .html(
-    `<strong>${d.data.label}</strong>: ${new Intl.NumberFormat("en-IN", {
-      style: "currency",
-      currency: "INR",
-      maximumFractionDigits: 0,
-    }).format(d.data.value)}`
-  )
-
+          .html(
+            `<strong>${d.data.label}</strong>: ${new Intl.NumberFormat("en-IN", {
+              style: "currency",
+              currency: "INR",
+              maximumFractionDigits: 0,
+            }).format(d.data.value)}`
+          )
+          .style("opacity", 1)
+          .style("left", event.pageX + 10 + "px")
+          .style("top", event.pageY - 28 + "px");
       })
+      
       .on("mouseout", () => {
         tooltip.style("opacity", 0);
       });

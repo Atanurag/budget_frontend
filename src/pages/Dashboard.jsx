@@ -237,25 +237,8 @@ const onBudget = () =>{
     {loading && <span>loading ...</span>}
 
 
-    <PieChart
-  data={[
-    { label: "Total Income", value: 50000 },
-    { label: "Total Expense", value: 30000 },
-    { label: "Total Balance", value: 20000 },
-  ]}
-/>
+    
 
-<div style={{display:'flex'}}>
-<BarChart chartData={incomeList.map(({ amount,category, ...rest }) => ({
-         value: amount,
-         name : category
-        }))} xLabel={'Income Category'} yLabel={'Income Amount'}/>
-
-<BarChart chartData={expenseList.map(({ amount,category, ...rest }) => ({
-         value: amount,
-         name : category
-        }))} xLabel={'Expense Category'} yLabel={'Expense Amount'}/>
-</div>
 
     <div className="top-strip-card">
   <div className="top-strip-left">
@@ -608,6 +591,26 @@ const onBudget = () =>{
   <div className="table-heading">Total Expense Data</div>
   <Table columns={columns} dataSource={expenseList} />
 </div>
+
+<div style={{display:'flex'}}>
+<BarChart chartData={incomeList.map(({ amount,category, ...rest }) => ({
+         value: amount,
+         name : category
+        }))} xLabel={'Income Category'} yLabel={'Income Amount'}/>
+
+<BarChart chartData={expenseList.map(({ amount,category, ...rest }) => ({
+         value: amount,
+         name : category
+        }))} xLabel={'Expense Category'} yLabel={'Expense Amount'}/>
+</div>
+
+<PieChart
+  data={[
+    { label: "Total Income", value: 50000 },
+    { label: "Total Expense", value: 30000 },
+    { label: "Total Balance", value: 20000 },
+  ]}
+/>
 
     </>
   );
