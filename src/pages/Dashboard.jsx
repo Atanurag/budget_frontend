@@ -9,6 +9,7 @@ import dayjs from 'dayjs';
 import '../css/Dashboard.css';
 import { handleAPICall, notificationDisplay } from "../components/Utils";
 import { SpaceContext } from 'antd/es/space';
+import CountUp from 'react-countup';
 const monthFormat = 'YYYY/MM';
 
 const Dashboard = () => {
@@ -223,84 +224,78 @@ onSubmit()
 },[])
 
 const onNewTxn = () =>{
-  navigate(`/transaction/add`, { state: { propType: "Add New Transaction" } })
+  navigate(`/transaction/add`, { state: { propType: "Add New Transaction" } });
+}
+const onBudget = () =>{
+  navigate(`/budget`);
 }
 
   return (
     <>
     {loading && <span>loading ...</span>}
 
-
     <div className="top-strip-card">
-      <DatePicker
-        className="top-strip-date-picker"
-        defaultValue={dayjs(budgetMonth, monthFormat)}
-        format={monthFormat}
-        picker="month"
-        onChange={onChange}
-        disabledDate={disabledDate}
-      />
-      <Button type="primary" className="top-strip-button" onClick={onSubmit}>
-        Submit
-      </Button>
-      <Button type="primary" className="top-strip-button" onClick={onNewTxn}>
-        New Txn
-      </Button>
+  <div className="top-strip-left">
+    <span className="top-strip-icon">📅</span>
+  </div>
+  <div className="top-strip-right">
+    <DatePicker
+      className="top-strip-date-picker"
+      defaultValue={dayjs(budgetMonth, monthFormat)}
+      format={monthFormat}
+      picker="month"
+      onChange={onChange}
+      disabledDate={disabledDate}
+    />
+    <Button type="primary" className="top-strip-button" onClick={onSubmit}>
+      Submit
+    </Button>
+    <Button type="primary" className="top-strip-button" style={{backgroundColor:'green'}} onClick={onNewTxn}>
+    Add New Transaction
+    </Button>
+    <Button className="top-strip-button" type="primary"  style={{backgroundColor:'green'}} onClick={onBudget}>Access Your Budget</Button>
+  </div>
+</div>
+
+
+
+
+<div className="info-card-row">
+  <div className="info-card">
+    <div className="info-card-icon">💰</div>
+    <div className="info-card-content">
+      <div className="info-card-label">Total Income</div>
+      <div className="info-card-value">₹ <CountUp delay={1} decimals={2} separator="," decimal="." end={summaryInfo?.totalIncome} /></div>
     </div>
+  </div>
 
-
-
-
-
-
-      <DatePicker
-        defaultValue={dayjs(budgetMonth, monthFormat)}
-        format={monthFormat}
-        picker="month"
-        onChange={onChange}
-        disabledDate={disabledDate}
-      />
-      <Button type="primary"  onClick={()=>{
-        onSubmit()
-      }}>Submit</Button>
-
-
-      <Button type="primary" onClick={()=>{
-         navigate(`/transaction/add`, { state: { propType: "Add New Transaction" } })
-      }}>Add New Transaction</Button>
-
-
-<Button type="primary" onClick={()=>{
-         navigate(`/budget`)
-      }}>Access Your Budget</Button>
-
-
-    <div className="small-card">
-      <div className="icon-container">P</div>
-      <div className="text-container">
-        <div className="label">Total Income</div>
-        <div className="value">{summaryInfo?.totalIncome}</div>
-      </div>
+  <div className="info-card">
+    <div className="info-card-icon">⛽</div>
+    <div className="info-card-content">
+      <div className="info-card-label">Total Expense</div>
+      <div className="info-card-value">₹ <CountUp delay={1} decimals={2} separator="," decimal="." end={summaryInfo?.totalExpense} /></div>
     </div>
-    <div className="small-card">
-      <div className="icon-container">P</div>
-      <div className="text-container">
-        <div className="label">Total Expense</div>
-        <div className="value">{summaryInfo?.totalExpense}</div>
-      </div>
-    </div>
-    <div className="small-card">
-      <div className="icon-container">P</div>
-      <div className="text-container">
-        <div className="label">Total Balance</div>
-        <div className="value">{summaryInfo?.balance}</div>
-      </div>
-    </div>
+  </div>
 
-    <span>Income table</span>
-<Table columns={columns} dataSource={incomeList} />
-<span>Expense table</span>
-<Table columns={columns} dataSource={expenseList} />
+  <div className="info-card">
+    <div className="info-card-icon">📦</div>
+    <div className="info-card-content">
+      <div className="info-card-label">Total Balance</div>
+      <div className="info-card-value">₹ <CountUp delay={1} decimals={2} separator="," decimal="." end={summaryInfo?.balance} /></div>
+    </div>
+  </div>
+</div>
+
+<div className="table-section">
+  <div className="table-heading">Total Income Data</div>
+  <Table columns={columns} dataSource={incomeList} />
+</div>
+
+<div className="table-section">
+  <div className="table-heading">Total Expense Data</div>
+  <Table columns={columns} dataSource={expenseList} />
+</div>
+
     </>
   );
 };

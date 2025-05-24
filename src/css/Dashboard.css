@@ -1,31 +1,45 @@
-/* Container card at the top as horizontal strip */
 .top-strip-card {
   display: flex;
+  justify-content: space-between;
   align-items: center;
-  justify-content: flex-end;
   background-color: #ffffff;
-  box-shadow: 0 2px 6px rgba(0,0,0,0.1);
-  padding: 12px 24px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+  padding: 12px 16px;
   gap: 16px;
   border-radius: 6px;
-  position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
   z-index: 1000;
+  flex-wrap: wrap;
 }
 
-/* Style for DatePicker wrapper if needed */
+.top-strip-left {
+  display: flex;
+  align-items: center;
+  font-size: 18px;
+}
+
+.top-strip-icon {
+  font-size: 20px;
+}
+
+.top-strip-right {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  align-items: center;
+  justify-content: flex-end;
+  flex-grow: 1;
+}
+
 .top-strip-date-picker {
-  min-width: 180px;
+  min-width: 160px;
+  flex-shrink: 1;
 }
 
-/* Buttons with consistent styling */
 .top-strip-button {
   background-color: #1890ff;
   border: none;
   color: white;
-  padding: 6px 16px;
+  padding: 6px 14px;
   font-size: 14px;
   border-radius: 4px;
   cursor: pointer;
@@ -50,47 +64,73 @@
 
 
 
-.small-card {
-    display: flex;
-    align-items: center;
-    background: white;
-    border-radius: 10px;
-    padding: 12px 20px;
-    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-    width: 220px; /* small width */
-    height: 70px; /* small height */
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-  }
-  
-  .icon-container {
-    background-color: #4caf50; /* green background */
-    color: white;
-    border-radius: 50%;
-    padding: 10px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 22px;
-    margin-right: 15px;
-    flex-shrink: 0;
-  }
-  
-  .text-container {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-  }
-  
-  .label {
-    font-size: 14px;
-    font-weight: 600;
-    color: #666;
-    margin-bottom: 4px;
-  }
-  
-  .value {
-    font-size: 22px;
-    font-weight: 700;
-    color: #222;
-  }
-  
+.info-card-row {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 16px 0;
+}
+
+.info-card {
+  flex: 1 1 140px; /* Minimum width 240px, flexible */
+  /* max-width: 32%;  Ensures max 3 in a row on wide screens */
+  background-color: #ffffff;
+  display: flex;
+  align-items: center;
+  padding: 16px 20px;
+  border-radius: 10px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+  gap: 16px;
+  min-width: 0;
+}
+
+.info-card-icon {
+  font-size: 28px;
+  color: #1890ff;
+  flex-shrink: 0;
+}
+
+.info-card-content {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 4px;
+}
+
+.info-card-label {
+  font-size: 14px;
+  color: #666666;
+}
+
+.info-card-value {
+  font-size: 18px;
+  font-weight: bold;
+  color: #000000;
+}
+
+.txn-btns{
+  display: flex;
+  gap:20px;
+  justify-content: flex-end;
+}
+
+.table-section {
+  margin: 8px;
+  padding: 16px;
+  background-color: #fff;
+  border-radius: 8px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08);
+}
+
+.table-heading {
+  text-align: right;
+  font-weight: 600;
+  font-size: 16px;
+  color: #444;
+  margin: 0 0 12px 0;
+  padding-right: 8px;
+}
+
+
+
