@@ -222,9 +222,37 @@ useEffect(()=>{
 onSubmit()
 },[])
 
+const onNewTxn = () =>{
+  navigate(`/transaction/add`, { state: { propType: "Add New Transaction" } })
+}
+
   return (
     <>
     {loading && <span>loading ...</span>}
+
+
+    <div className="top-strip-card">
+      <DatePicker
+        className="top-strip-date-picker"
+        defaultValue={dayjs(budgetMonth, monthFormat)}
+        format={monthFormat}
+        picker="month"
+        onChange={onChange}
+        disabledDate={disabledDate}
+      />
+      <Button type="primary" className="top-strip-button" onClick={onSubmit}>
+        Submit
+      </Button>
+      <Button type="primary" className="top-strip-button" onClick={onNewTxn}>
+        New Txn
+      </Button>
+    </div>
+
+
+
+
+
+
       <DatePicker
         defaultValue={dayjs(budgetMonth, monthFormat)}
         format={monthFormat}
