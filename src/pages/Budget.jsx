@@ -4,7 +4,7 @@ import { useNavigate } from "react-router-dom";
 import { Input } from "antd";
 const { Search } = Input;
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faSearch, faDownload,faTrash, faFileExcel,faPenToSquare } from "@fortawesome/free-solid-svg-icons";
+import { faSearch, faDownload,faTrash, faFileExcel,faPenToSquare,faArrowLeft } from "@fortawesome/free-solid-svg-icons";
 import dayjs from 'dayjs';
 import { handleAPICall, notificationDisplay } from "../components/Utils";
 import { SpaceContext } from 'antd/es/space';
@@ -59,7 +59,9 @@ return acc+curr['amount'];
   const disabledDate = (current) => {
     return current && current.isBefore(dayjs().startOf("month"), "month");
   };
-
+  const onBudget = () =>{
+    navigate(`/budget/add`, { state: { propType: "Add New Budget" } })
+  }
 
 useEffect(()=>{
 onSubmit()
@@ -68,21 +70,32 @@ onSubmit()
   return (
     <>
     {loading && <span>loading ...</span>}
-      <DatePicker
-        defaultValue={dayjs(budgetMonth, monthFormat)}
-        format={monthFormat}
-        picker="month"
-        onChange={onChange}
-        disabledDate={disabledDate}
-      />
-      <Button type="primary"  onClick={()=>{
-        onSubmit()
-      }}>Submit</Button>
+
+    <div className="top-strip-card">
+  <div className="top-strip-left">
+    <span className="top-strip-icon"><FontAwesomeIcon icon={faArrowLeft} onClick={() => navigate('/')} style={{ marginRight: 40, cursor: 'pointer' }} /></span>
+  </div>
+  <div className="top-strip-right">
+    <DatePicker
+      className="top-strip-date-picker"
+      defaultValue={dayjs(budgetMonth, monthFormat)}
+      format={monthFormat}
+      picker="month"
+      onChange={onChange}
+      disabledDate={disabledDate}
+    />
+    <Button type="primary" className="top-strip-button" onClick={onSubmit}>
+      Submit
+    </Button>
+    <Button type="primary" className="top-strip-button" style={{backgroundColor:'green'}} onClick={onBudget}>
+    Add New Budget
+    </Button>
+  </div>
+</div>
 
 
-      <Button type="primary" onClick={()=>{
-         navigate(`/budget/add`, { state: { propType: "Add New Budget" } })
-      }}>Add New Budget</Button>
+
+     
 
 {budgetInfo?.title }
 {budgetInfo?.amount }
