@@ -11,6 +11,7 @@ import { handleAPICall, notificationDisplay } from "../components/Utils";
 import { SpaceContext } from 'antd/es/space';
 import CountUp from 'react-countup';
 const monthFormat = 'YYYY/MM';
+import BarChart from '../components/BarChart.jsx'
 
 const Dashboard = () => {
   const [budgetMonth, setBudgetMonth] = useState(dayjs('2025/05'));
@@ -233,6 +234,18 @@ const onBudget = () =>{
   return (
     <>
     {loading && <span>loading ...</span>}
+
+<div style={{display:'flex'}}>
+<BarChart chartData={incomeList.map(({ amount,category, ...rest }) => ({
+         value: amount,
+         name : category
+        }))} xLabel={'Income Category'} yLabel={'Income Amount'}/>
+
+<BarChart chartData={expenseList.map(({ amount,category, ...rest }) => ({
+         value: amount,
+         name : category
+        }))} xLabel={'Expense Category'} yLabel={'Expense Amount'}/>
+</div>
 
     <div className="top-strip-card">
   <div className="top-strip-left">
