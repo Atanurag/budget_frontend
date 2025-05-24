@@ -12,6 +12,7 @@ import { SpaceContext } from 'antd/es/space';
 import CountUp from 'react-countup';
 const monthFormat = 'YYYY/MM';
 import BarChart from '../components/BarChart.jsx'
+import PieChart from '../components/PieChart.jsx';
 
 const Dashboard = () => {
   const [budgetMonth, setBudgetMonth] = useState(dayjs('2025/05'));
@@ -234,6 +235,15 @@ const onBudget = () =>{
   return (
     <>
     {loading && <span>loading ...</span>}
+
+
+    <PieChart
+  data={[
+    { label: "Total Income", value: 50000 },
+    { label: "Total Expense", value: 30000 },
+    { label: "Total Balance", value: 20000 },
+  ]}
+/>
 
 <div style={{display:'flex'}}>
 <BarChart chartData={incomeList.map(({ amount,category, ...rest }) => ({
