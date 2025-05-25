@@ -50,9 +50,8 @@ function Login() {
            //let url = `${urlOrigin}/api/v1/user/user-verification-with-password/ `;
            //if user coms back from otp and edited the number then as of flow
            
-           setIsLoginClicked(true);
            //let url1 = `${urlOrigin}/api/v1/mob_app/register-customer/`;
-           let url = `${urlOrigin}/api/v1/mob_app/customer-login/`;
+           let url = `https://6d4e0550-535f-4581-9751-7162b32bf5da-00-7br79xy2c9sc.sisko.replit.dev/api/users/login`;
            
           // setGlobalUsname(values.username)
           // setCustomerMobile(values.number);
@@ -62,15 +61,18 @@ function Login() {
           //   city: values.city == undefined ? '' : values.city,
           //   //"vehicle_type": 3,
           // }
-          let postObjOtp = {
-            mobile_number: values.number,
+          let postObj = {
+            email: values.email,
+            password: values.password,
+
         }
+        console.log(postObj)
        // setCustomerMobile(values.number);
         // setIsLoginClicked(true);
-        handleAPICall(url, "POST", postObjOtp).then(res => {
+        handleAPICall(url, "POST", postObj).then(res => {
             if (res.status === "success") {
-              setShowOtpForm(true);
-              setIsLoginClicked(false);
+              // setIsLoginClicked(false);
+              console.log(res)
               notificationDisplay(res.status, res.message);
               //   handleAPICall(url, "POST", postObjOtp).then(res => {
               //     if (res.status === "success") {
@@ -86,10 +88,8 @@ function Login() {
             }
             else {
               notificationDisplay("info", res.message)
-              setIsLoginClicked(false);
             }
         }).catch((err) =>{
-          setIsLoginClicked(false);
           //setShowOtpForm(true);
           //notificationDisplay("error",err.message);
   
@@ -142,50 +142,21 @@ function Login() {
                                   <div style={{ marginBottom: 12 }}>Enter your details</div>
                                 
                                   <Form.Item
-                                  label={'Phone number'}
-                                      name="number"
-                                      rules={[
-                                          {
-                                              required: true,
-                                              message: 'Please enter your Phone Number!',
-                                          },
-                                      ]}
-                                      style={{ marginBottom:10}}
-                                      // rules={[{ validator: async () => Promise.resolve() }]}
-                                  >
-                                      <Input
-                                      type='tel'
-                                      tabIndex={0}
-                                      prefix={<span>+91</span>}
-                                      suffix={<FontAwesomeIcon icon={faPhone}
-                                      className="site-form-item-icon" />}
-                                      
-                                      onKeyDown={(event) => {
-                                        const isNumericKey = /[0-9.]/.test(event.key);
-                                        const isControlKey = event.key === "Backspace" || event.key === "Delete" || event.ctrlKey || event.metaKey;
-                                        const isTabKey = event.key === "Tab";
-                                        const inputValue = event.target.value;
-                                        const hasDot = inputValue.includes('.');
-                                    
-                                        if ((!isNumericKey && !isControlKey && !isTabKey) || (event.key === '.' && hasDot)) {
-                                            event.preventDefault();
-                                        }
-                                    }}
-                                          // onKeyDown={(event) => {
-                                          //     if (!/[0-9]/.test(event.key) && event.key !== "Backspace" && event.key !== "Delete") { event.preventDefault(); }
-                                          // }} 
-                                          
-                                          />
-                                  </Form.Item>
-                                  <Form.Item
-                                  label='Password'
-                                      name="password"
-                                      style={{ marginBottom:18}}
-                                  >
-          <Input/>
-
-                                  </Form.Item>
-                                  <Form.Item>
+                            name="email"
+                            rules={[
+                                {
+                                    required: true,
+                                    message: 'Please input your email!',
+                                },
+                            ]}
+                        >
+                            <Input suffix={<FontAwesomeIcon icon={faUser} className="site-form-item-icon" />} placeholder="Email" />
+                        </Form.Item>
+                        <Form.Item
+                            name="password"
+                        >
+                            <Input.Password type="password" placeholder="Password" />
+                                  <Form.Item/>
                                       <Button type="primary" htmlType="submit" 
                                     //   loading={isLoginClicked} disabled={isLoginClicked}
                                        className="login-box-form-button">
