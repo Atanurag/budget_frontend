@@ -102,6 +102,16 @@ const BudgetManagement = () => {
                             }}
                             
                             onFinish={onFinish}
+                            onKeyDown={(e) => {
+                                if (e.key === 'Enter') {
+                                
+                                  const tag = e.target.tagName.toLowerCase();
+                                  if (tag !== 'textarea') {
+                                    e.preventDefault(); 
+                                    form.submit();
+                                  }
+                                }
+                              }}
                         >
                             <Form.Item label="Title" name="title"
                                 rules={[

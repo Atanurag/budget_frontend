@@ -5,6 +5,7 @@ import Dashboard from './pages/Dashboard';
 import TransactionManagement from './pages/TransactionManagement';
 import Budget from './pages/Budget';
 import BudgetManagement from './pages/BudgetManagement';
+import Login from './pages/Login';
 
 // import { Collapse } from 'antd';
 // import { Space, Table, Tag } from 'antd';
@@ -19,6 +20,8 @@ const App = () => {
     
 
       <Routes>
+        <Route path="/login"
+element={<Login/>} />
 <Route path="/"
 element={<Dashboard/>} />
 

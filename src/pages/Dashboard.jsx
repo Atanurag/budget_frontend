@@ -74,6 +74,7 @@ const onDelete = (id) => {
       if (res.status === "success") {
         console.log(res)
         notificationDisplay('success',res.message)
+        onSubmit(budgetMonth);
         setLoading(false)
       }
       else{

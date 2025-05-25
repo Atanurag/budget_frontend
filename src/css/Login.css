@@ -1,0 +1,165 @@
+.login-background {
+    /* background: #36abad; */
+    /* background: -moz-linear-gradient( top, #36abad 0%, #1874ae 100% ); */
+    /* background: -webkit-linear-gradient( top, #36abad 0%, #1874ae 100% ); */
+    /* background: linear-gradient( to bottom, #36abad 0%, #1874ae 100% ); */
+    /* filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#36abad', endColorstr='#1874ae',GradientType=0 ); */
+    
+   
+    /* height: 500px; */
+    /* background-image: url("./login.webp"); */
+  background-color: #36abad;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    width: 100%;
+    min-height: 100vh;
+    overflow: auto;
+    position: relative;
+    display: flex;
+    flex-flow: column;
+    justify-content: center;
+    align-items: center;
+    animation: fadeIn 0.5s;
+  }
+  
+  @keyframes fadeIn {
+    0% {
+      opacity: 0;
+    }
+    100% {
+      opacity: 1;
+    }
+  }
+  
+  .login-box {
+    background: #fff;
+    display: flex;
+    flex-direction: column;
+    border-radius: 8px;
+    margin:4px;
+     /* margin-left: 2%;   */
+
+  }
+  
+  .login-box .company-logo {
+    align-self: center;
+    position: absolute;
+    margin-top: -85px;
+  }
+  
+  .login-box .company-logo.ant-avatar > img {
+    /* margin-top:-8px; */
+    height: 100px;
+    width: 100px;
+    object-fit: contain!important;
+  }
+  
+  .login-box .login-box-text {
+    /* background-color: #d5ecce; */
+    background-color: #3f7cac;
+    color: #f4f4f4;
+    padding: 24px;
+    border-top-left-radius: 6px;
+    border-top-right-radius: 6px;
+  }
+  
+  .login-box .login-box-text .login-box-text-header {
+    font-size: 24px;
+    font-weight: 600;
+    font-family: "Exo", sans-serif !important;
+    margin: 15px;
+    text-align: center;
+}
+  
+  
+  .login-box .login-box-text .login-box-text-subheader {
+    font-size: 10px;
+    font-family: "Exo", sans-serif !important;
+    text-align: center;
+  }
+  .login-box .login-box-form {
+    padding: 24px;
+    font-family: "Exo", sans-serif !important;
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .login-box .login-box-form input:active {
+    outline: none;
+  }
+  
+  .login-box .otp-box-form {
+    padding: 22px 43px;
+    font-family: "Exo", sans-serif !important;
+    display: flex;
+    flex-direction: column;
+  }
+  .ant-form-item-explain .ant-form-item-explain-error {
+    margin-top: 8px;
+    margin-bottom: 8px;
+  }
+  
+  .login-box .login-box-form-button {
+    width: 100%;
+    background-color: #3f7cac;
+    font-weight: 600;
+  }
+  
+  .login-box .otp-box-form-button {
+    width: 100%;
+  }
+  
+  .login-box .custom-otp-input {
+    font-size: 19px;
+    font-weight: 400;
+    width: 38px;
+    height: 46px;
+  }
+  
+  .login-box .site-form-item-icon {
+    color: lightgray;
+  }
+  .login-box .login-box-form .ant-form-item-explain-error {
+    font-size: 12px;
+  }
+  .login-copyright {
+    font-size: 10px;
+    color: gray;
+    align-self: center;
+  }
+  
+  .otp-copyright {
+    font-size: 10px;
+    color: gray;
+    align-self: center;
+  }
+  
+  @media only screen and (max-width: 626px) {
+    .login-background  {
+      align-items: center;
+    }
+    .login-box {
+      margin-right:0;
+    }
+    .login-box .custom-otp-input {
+      font-weight: 400;
+      font-size: 15px;
+      width: 32px;
+      height: 40px;
+    }
+  
+    .login-box .otp-box-form {
+      padding: 22px 47px;
+      font-family: "Exo", sans-serif !important;
+      display: flex;
+      flex-direction: column;
+    }
+  
+    .ant-form-item-control-input-content .input-otp {
+      display: flex;
+      gap: 1.2em;
+      justify-content: center;
+    }
+  }
+  
