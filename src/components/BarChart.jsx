@@ -91,7 +91,6 @@ const BarChart = ({ chartData, xLabel, yLabel, title }) => {
         d3.select(this).attr("fill", "#1890ff");
       });
 
-    // Add text labels on top of bars with ₹
     svg.selectAll(".bar-label")
       .data(chartData)
       .enter()

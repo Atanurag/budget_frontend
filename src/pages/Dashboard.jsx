@@ -624,12 +624,12 @@ const onBudget = () =>{
 <BarChart chartData={incomeList.map(({ amount,category, ...rest }) => ({
          value: amount,
          name : category
-        }))} xLabel={'Income Category'} yLabel={'Income Amount'} title={'Income Summary'}/>
+        }))} xLabel={'Income Category'} yLabel={'Income Amount'} title={`Income Summary ${dateView}`}/>
 
 <BarChart chartData={expenseList.map(({ amount,category, ...rest }) => ({
          value: amount,
          name : category
-        }))} xLabel={'Expense Category'} yLabel={'Expense Amount'} title={'Expense Summary'}/>
+        }))} xLabel={'Expense Category'} yLabel={'Expense Amount'} title={`Expense Summary ${dateView}`}/>
 </div>
 
 <PieChart
