@@ -6,6 +6,7 @@ import { faArrowLeft } from '@fortawesome/free-solid-svg-icons';
 import { handleAPICall, notificationDisplay } from "../components/Utils";
 import dayjs from 'dayjs';
 import '../css/Transaction.css';
+import '../css/Loading.css';
 const BudgetManagement = () => {
 
   
@@ -13,6 +14,7 @@ const BudgetManagement = () => {
     const { budgetId } = useParams();
     const location = useLocation();
     const navigate = useNavigate()
+    const [loading, setLoading] = useState(false);
     const propType = location.state?.propType || 'Add New Budget';
     // const backToUnloadingTankManagement = () => {
     //     history.push('/profile/unloading-tank-management');
@@ -23,9 +25,11 @@ const BudgetManagement = () => {
     const [budgetDetail, setBudgetDetail] = useState();
     useEffect(() => {
         if (budgetId) {
+            setLoading(true);
             const budgetUrl = `https://6d4e0550-535f-4581-9751-7162b32bf5da-00-7br79xy2c9sc.sisko.replit.dev/api/budget/${budgetId}`;
             handleAPICall(budgetUrl, "GET").then(res => {
                 setBudgetDetail(res.data);
+                setLoading(false);
             });
         }
     }, [])
@@ -70,6 +74,7 @@ const BudgetManagement = () => {
         return current && current.isBefore(dayjs().startOf("month"), "month");
       };
     return (
+        <>
         <div className="dashboard-container">
             <Row className="dashboard-filter">
                 <Col span={24}>
@@ -145,6 +150,10 @@ const BudgetManagement = () => {
                 </Col>
             </Row>
         </div>
+        {loading &&  <div className="loader-wrapper">
+  <div className="loader"></div>
+</div>
+}</>
     );
 };
 export default BudgetManagement;

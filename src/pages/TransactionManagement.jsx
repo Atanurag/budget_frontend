@@ -6,6 +6,7 @@ import { faArrowLeft } from '@fortawesome/free-solid-svg-icons';
 import { handleAPICall, notificationDisplay } from "../components/Utils";
 import dayjs from 'dayjs';
 import '../css/Transaction.css';
+import '../css/Loading.css';
 const TransactionManagement = () => {
 
   
@@ -21,11 +22,14 @@ const TransactionManagement = () => {
     const [submitLoading, setSubmitLoading] = useState(false);
     const [submitDisabled, setSubmitDisabled] = useState(false);
     const [txnDetail, setTxnDetail] = useState();
+    const [loading , setLoading] = useState(false);
     useEffect(() => {
         if (transactionId) {
+            setLoading(true);
             const txnUrl = `https://6d4e0550-535f-4581-9751-7162b32bf5da-00-7br79xy2c9sc.sisko.replit.dev/api/transaction/${transactionId}`;
             handleAPICall(txnUrl, "GET").then(res => {
                 setTxnDetail(res.data);
+                setLoading(false);
                 console.log(res)
             });
         }
@@ -75,6 +79,7 @@ const TransactionManagement = () => {
         return current && current.isBefore(dayjs().startOf("month"), "month");
       };
     return (
+        <>
         <div className="dashboard-container">
             <Row className="dashboard-filter">
                 <Col span={24}>
@@ -179,6 +184,12 @@ const TransactionManagement = () => {
                 </Col>
             </Row>
         </div>
+
+{loading &&  <div className="loader-wrapper">
+  <div className="loader"></div>
+</div>
+}</>
+
     );
 };
 export default TransactionManagement;

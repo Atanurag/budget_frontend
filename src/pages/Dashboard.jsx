@@ -7,6 +7,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faSearch, faDownload,faTrash, faFileExcel,faPenToSquare,faCircleInfo  } from "@fortawesome/free-solid-svg-icons";
 import dayjs from 'dayjs';
 import '../css/Dashboard.css';
+import '../css/Loading.css';
 import { handleAPICall, notificationDisplay } from "../components/Utils";
 import { SpaceContext } from 'antd/es/space';
 import CountUp from 'react-countup';
@@ -235,7 +236,6 @@ const onBudget = () =>{
 
   return (
     <>
-    {loading && <span>loading ...</span>}
 
 
     
@@ -620,6 +620,7 @@ const onBudget = () =>{
   <Table columns={columns} dataSource={expenseList} />
 </div>
 
+
 <div style={{display:'flex'}}>
 <BarChart chartData={incomeList.map(({ amount,category, ...rest }) => ({
          value: amount,
@@ -640,6 +641,10 @@ const onBudget = () =>{
   ]}
   title={dateView}
 />
+{loading &&  <div className="loader-wrapper">
+  <div className="loader"></div>
+</div>
+}
 
     </>
   );

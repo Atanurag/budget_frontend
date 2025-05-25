@@ -11,6 +11,7 @@ import { SpaceContext } from 'antd/es/space';
 import DonutChart from '../components/DonutChart';
 const monthFormat = 'YYYY/MM';
 import '../css/Budget.css';
+import '../css/Loading.css';
 import CountUp from 'react-countup';
 import BarChart from '../components/BarChart.jsx'
 const Budget = () => {
@@ -77,7 +78,6 @@ onSubmit()
 
   return (
     <>
-    {loading && <span>loading ...</span>}
 
     <div className="top-strip-card">
   <div className="top-strip-left">
@@ -272,6 +272,12 @@ onSubmit()
         }))} xLabel={'Expense Category'} yLabel={'Expense Amount'} title={`Expense Summary ${dateView}`}/>
 </div>
 
+
+
+{loading &&  <div className="loader-wrapper">
+  <div className="loader"></div>
+</div>
+}
     </>
   );
 };
