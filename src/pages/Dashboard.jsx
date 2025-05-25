@@ -507,7 +507,7 @@ const onBudget = () =>{
 </div>
     <div className="info-card-content">
       <div className="info-card-label">Total Expense</div>
-      <div className="info-card-value">₹ <CountUp delay={1} decimals={2} separator="," decimal="." end={summaryInfo?.totalExpense} /></div>
+      <div className="info-card-value"> ₹ <CountUp delay={1} decimals={2} separator="," decimal="." end={summaryInfo?.totalIncome >  summaryInfo?.totalExpense ? summaryInfo?.totalExpense : summaryInfo?.totalExpense - summaryInfo?.totalIncome} /> /  ₹ <CountUp delay={1} decimals={2} separator="," decimal="." end={summaryInfo?.totalExpense} /></div>
     </div>
   </div>
 
