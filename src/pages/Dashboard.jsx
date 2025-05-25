@@ -608,9 +608,9 @@ const onBudget = () =>{
 
 <PieChart
   data={[
-    { label: "Total Income", value: 50000 },
-    { label: "Total Expense", value: 30000 },
-    { label: "Total Balance", value: 20000 },
+    { label: "Total Income", value: summaryInfo?.totalIncome },
+    { label: "Total Expense", value: summaryInfo?.totalExpense },
+    { label: "Total Balance", value: summaryInfo?.balance },
   ]}
   title={dateView}
 />
