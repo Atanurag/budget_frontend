@@ -1,10 +1,19 @@
+.chart-row {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 20px;
+}
+
 .chart-card {
   background: #fff;
   border-radius: 12px;
   box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08);
-  padding: 20px;
-  margin: 20px auto;
+  padding: 15px;
+  flex: 1 1 55%;
   max-width: 500px;
+  min-width: 400px;
+  box-sizing: border-box;
 }
 
 .chart-title {
@@ -18,7 +27,7 @@
 .bar-chart-container {
   position: relative;
   width: 100%;
-  max-width: 100%;
+  height: 350px;
   overflow: hidden;
 }
 
@@ -38,4 +47,11 @@
 .axis-label {
   font-size: 13px;
   fill: #333;
+}
+
+@media (max-width: 768px) {
+  .chart-card {
+    flex: 1 1 100%;
+    max-width: 100%;
+  }
 }

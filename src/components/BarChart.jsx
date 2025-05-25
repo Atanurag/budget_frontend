@@ -1,14 +1,14 @@
 import React, { useEffect, useRef } from "react";
 import * as d3 from "d3";
-import "../css/BarChart.css"; // Make sure this file includes updated styles below
+import "../css/BarChart.css";
 
 const BarChart = ({ chartData, xLabel, yLabel, title }) => {
   const chartRef = useRef();
 
   useEffect(() => {
-    const margin = { top: 20, right: 30, bottom: 50, left: 60 };
-    const width = 500 - margin.left - margin.right;
-    const height = 300 - margin.top - margin.bottom;
+    const margin = { top: 20, right: 20, bottom: 50, left: 50 };
+    const width = 400 - margin.left - margin.right;
+    const height = 250 - margin.top - margin.bottom;
 
     d3.select(chartRef.current).select("svg").remove();
 
@@ -18,7 +18,7 @@ const BarChart = ({ chartData, xLabel, yLabel, title }) => {
       .attr("viewBox", `0 0 ${width + margin.left + margin.right} ${height + margin.top + margin.bottom}`)
       .attr("preserveAspectRatio", "xMidYMid meet")
       .style("width", "100%")
-      .style("height", "auto")
+      .style("height", "100%")
       .append("g")
       .attr("transform", `translate(${margin.left},${margin.top})`);
 
@@ -35,16 +35,10 @@ const BarChart = ({ chartData, xLabel, yLabel, title }) => {
 
     svg.append("g")
       .attr("transform", `translate(0,${height})`)
-      .call(d3.axisBottom(x))
-      .selectAll("text")
-      .style("font-size", "12px");
+      .call(d3.axisBottom(x));
 
-    svg.append("g")
-      .call(d3.axisLeft(y))
-      .selectAll("text")
-      .style("font-size", "12px");
+    svg.append("g").call(d3.axisLeft(y));
 
-    // X-axis label
     svg.append("text")
       .attr("text-anchor", "middle")
       .attr("x", width / 2)
@@ -52,14 +46,7 @@ const BarChart = ({ chartData, xLabel, yLabel, title }) => {
       .attr("class", "axis-label")
       .text(xLabel);
 
-    // Y-axis label
-    svg.append("text")
-      .attr("text-anchor", "middle")
-      .attr("transform", `rotate(-90)`)
-      .attr("x", -height / 2)
-      .attr("y", -margin.left + 15)
-      .attr("class", "axis-label")
-      .text(yLabel);
+   
 
     const tooltip = d3
       .select(chartRef.current)

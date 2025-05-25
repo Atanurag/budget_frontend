@@ -56,7 +56,6 @@ const Dashboard = () => {
           key: _id,
           ...rest
         })));
-          console.log(res);
       }
       
      
