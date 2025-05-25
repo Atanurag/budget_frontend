@@ -234,7 +234,11 @@ const onNewTxn = () =>{
 const onBudget = () =>{
   navigate(`/budget`);
 }
-
+const onLogout = () =>{
+localStorage.removeItem('token');
+localStorage.removeItem('name');
+  navigate(`/login`);
+}
   return (
     <>
 
@@ -262,6 +266,9 @@ const onBudget = () =>{
     Add New Transaction
     </Button>
     <Button className="top-strip-button" type="primary"  style={{backgroundColor:'green'}} onClick={onBudget}>Access Your Budget</Button>
+    <Button className="top-strip-button" type="danger"  style={{backgroundColor:'#bd2038'}} onClick={onLogout}>Logout</Button>
+
+  
   </div>
 </div>
 

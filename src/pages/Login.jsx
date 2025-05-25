@@ -7,10 +7,11 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPhone, faUser, faCity } from "@fortawesome/free-solid-svg-icons";
 import dayjs from 'dayjs';
 import { handleAPICall, notificationDisplay } from "../components/Utils.js";
+import { useNavigate } from "react-router-dom";
 
 function Login() {
 
-
+const navigate = useNavigate()
 
     //console.log(localStorage.getItem('customer_token') !== null)
     
@@ -66,43 +67,28 @@ function Login() {
             password: values.password,
 
         }
-        console.log(postObj)
        // setCustomerMobile(values.number);
         // setIsLoginClicked(true);
         handleAPICall(url, "POST", postObj).then(res => {
             if (res.status === "success") {
-              // setIsLoginClicked(false);
-              console.log(res)
-              notificationDisplay(res.status, res.message);
-              //   handleAPICall(url, "POST", postObjOtp).then(res => {
-              //     if (res.status === "success") {
-              //         setShowOtpForm(true);
-              //         setIsLoginClicked(false);
-              //         notificationDisplay(res.status, res.message);
-              //     }
-              //     else {
-              //         notificationDisplay("error", res.message);
-              //         setIsLoginClicked(false);
-              //     }
-              // })
+              navigate('/dashboard');
+              localStorage.setItem('token',res.token);
+              localStorage.setItem('name',res.user.name);
             }
             else {
               notificationDisplay("info", res.message)
             }
         }).catch((err) =>{
-          //setShowOtpForm(true);
-          //notificationDisplay("error",err.message);
+          notificationDisplay("error",err.message);
   
         })
           
     }
 
-    
-      
-    // Let the user skip the login if they already have a token set
     useEffect(() => {
         document.title = "Welcome to Budget Manager";
-      
+        if (localStorage.getItem('token') === null) navigate('/login');
+        if (localStorage.getItem('token') != null) navigate('/dashboard');
     }, []);
   
     return (
@@ -130,40 +116,45 @@ function Login() {
                           </div>
                           
                           <div className="login-box-form">
-                              <Form
-                              layout="vertical"
-                                  name="normal_login"
-                                  className="login-form"
-                                  initialValues={{
-                                      remember: true,
-                                  }}
-                                  onFinish={onFinish}
-                              >
-                                  <div style={{ marginBottom: 12 }}>Enter your details</div>
-                                
-                                  <Form.Item
-                            name="email"
-                            rules={[
-                                {
-                                    required: true,
-                                    message: 'Please input your email!',
-                                },
-                            ]}
-                        >
-                            <Input suffix={<FontAwesomeIcon icon={faUser} className="site-form-item-icon" />} placeholder="Email" />
-                        </Form.Item>
-                        <Form.Item
-                            name="password"
-                        >
-                            <Input.Password type="password" placeholder="Password" />
-                                  <Form.Item/>
-                                      <Button type="primary" htmlType="submit" 
-                                    //   loading={isLoginClicked} disabled={isLoginClicked}
-                                       className="login-box-form-button">
-                                          Continue
-                                      </Button>
-                                  </Form.Item>
-                              </Form>
+                          <Form
+  layout="vertical"
+  name="normal_login"
+  className="login-form"
+  initialValues={{ remember: true }}
+  onFinish={onFinish}
+>
+  <div style={{ marginBottom: 12 }}>Enter your details</div>
+
+  <Form.Item
+    name="email"
+    rules={[{ required: true, message: 'Please input your email!' }]}
+  >
+    <Input
+      suffix={<FontAwesomeIcon icon={faUser} className="site-form-item-icon" />}
+      placeholder="Email"
+    />
+  </Form.Item>
+
+  <Form.Item
+    name="password"
+    rules={[{ required: true, message: 'Please input your password!' }]}
+  >
+    <Input.Password placeholder="Password" />
+  </Form.Item>
+
+  <Form.Item>
+    <Button
+      type="primary"
+      htmlType="submit"
+      className="login-box-form-button"
+      // loading={isLoginClicked}
+      // disabled={isLoginClicked}
+    >
+      Continue
+    </Button>
+  </Form.Item>
+</Form>
+
                               <span className="login-copyright">All Rights Reserved {dayjs().get('year')}</span>
                           </div>
 

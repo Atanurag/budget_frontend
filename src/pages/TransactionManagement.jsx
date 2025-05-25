@@ -84,7 +84,7 @@ const TransactionManagement = () => {
             <Row className="dashboard-filter">
                 <Col span={24}>
                     <Card className="org-header-container">
-                        <div className="org-header-text"> <FontAwesomeIcon icon={faArrowLeft} onClick={() => navigate('/')} style={{ marginRight: 40, cursor: 'pointer' }} />
+                        <div className="org-header-text"> <FontAwesomeIcon icon={faArrowLeft} onClick={() => navigate(-1)} style={{ marginRight: 40, cursor: 'pointer' }} />
                             {propType} {txnDetail?.title}
                         </div>
                     </Card>

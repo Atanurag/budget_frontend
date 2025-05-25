@@ -20,10 +20,14 @@ const App = () => {
     
 
       <Routes>
+
+
         <Route path="/login"
 element={<Login/>} />
 <Route path="/"
-element={<Dashboard/>} />
+element={<Login/>} />
+
+            <Route path="/dashboard" element={<Dashboard/>} />
 
         <Route
           path="/transaction/add"
