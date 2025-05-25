@@ -8,6 +8,7 @@ import { faSearch, faDownload,faTrash, faFileExcel,faPenToSquare,faArrowLeft } f
 import dayjs from 'dayjs';
 import { handleAPICall, notificationDisplay } from "../components/Utils";
 import { SpaceContext } from 'antd/es/space';
+import DonutChart from '../components/DonutChart';
 const monthFormat = 'YYYY/MM';
 
 const Budget = () => {
@@ -110,6 +111,13 @@ onSubmit()
       }
     
     }>i</span>
+
+
+
+<DonutChart usedPercent={69} totalBudget={100000} title="Budget Usage" />
+
+
+
     </>
   );
 };
