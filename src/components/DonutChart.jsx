@@ -1,7 +1,7 @@
 import React, { useEffect, useRef } from "react";
 import * as d3 from "d3";
 
-const DonutChart = ({ usedPercent, totalBudget = 100, title }) => {
+const DonutChart = ({ usedPercent, totalBudget , title }) => {
   const chartRef = useRef();
 
   useEffect(() => {

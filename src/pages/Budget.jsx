@@ -17,6 +17,8 @@ const Budget = () => {
   const [incomeList,setIncomeList] = useState([]);
   const [expense,setExpense] = useState(0);
   const [filtersParameter, setFiltersParameter] = useState({});
+  const [dateView, setDateView] = useState(dayjs(budgetMonth, monthFormat).format('MMMM YYYY'))
+const [percentUsage, setPercentUsage] = useState(0);
   const [loading, setLoading] = useState(false)
   const searchInput = useRef(null);
   const navigate = useNavigate();
@@ -31,7 +33,8 @@ const Budget = () => {
     handleAPICall(budgetUrl, "POST", postObj).then(res => {
         if (res.status === "success") {
           setBudgetInfo(res.data[0]);
-            console.log(res)
+          setDateView(dayjs(budgetMonth, monthFormat).format('MMMM YYYY'));
+            
             setLoading(false)
         }
         else{
@@ -114,7 +117,7 @@ onSubmit()
 
 
 
-<DonutChart usedPercent={69} totalBudget={100000} title="Budget Usage" />
+<DonutChart usedPercent={Math.round((expense / budgetInfo?.amount) * 100)} totalBudget={budgetInfo?.amount} title={`Budget Usage ${dateView}`} />
 
 
 
