@@ -193,7 +193,7 @@ function Login() {
                                       </Button>
                                   </Form.Item>
                               </Form>
-                              <span className="login-copyright">All Rights Reserved || ©IoTronics System Pvt Ltd, {dayjs().get('year')}</span>
+                              <span className="login-copyright">All Rights Reserved {dayjs().get('year')}</span>
                           </div>
 
                               
@@ -211,7 +211,6 @@ function Login() {
           
     
 
-                                  <span className="otp-copyright">All Rights Reserved {dayjs().get('year')}</span>
                               </div>
                             
                             
