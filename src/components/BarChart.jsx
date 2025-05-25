@@ -47,15 +47,6 @@ const BarChart = ({ chartData, xLabel, yLabel, title }) => {
       .attr("class", "axis-label")
       .text(xLabel);
 
-    // Y-Axis Label (with more spacing from ticks)
-    svg.append("text")
-      .attr("text-anchor", "middle")
-      .attr("transform", `rotate(-90)`)
-      .attr("x", -height / 2)
-      .attr("y", -margin.left + 30) // adds space between label and ticks
-      .attr("class", "axis-label")
-      .text(yLabel);
-
     const tooltip = d3
       .select(chartRef.current)
       .append("div")
