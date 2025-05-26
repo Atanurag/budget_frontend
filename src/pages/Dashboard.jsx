@@ -248,7 +248,7 @@ localStorage.removeItem('name');
 
     <div className="top-strip-card">
   <div className="top-strip-left">
-    <span className="top-strip-icon">📅</span>
+    <span className="top-strip-icon">{localStorage.getItem('name')}</span>
   </div>
   <div className="top-strip-right">
     <DatePicker
@@ -630,25 +630,26 @@ localStorage.removeItem('name');
 
 
 <div style={{display:'flex'}}>
-<BarChart chartData={incomeList.map(({ amount,category, ...rest }) => ({
+{incomeList.length > 0  && <BarChart chartData={incomeList.map(({ amount,category, ...rest }) => ({
          value: amount,
          name : category
         }))} xLabel={'Income Category'} yLabel={'Income Amount'} title={`Income Summary ${dateView}`}/>
-
+      }
+      {expenseList.length > 0 &&
 <BarChart chartData={expenseList.map(({ amount,category, ...rest }) => ({
          value: amount,
          name : category
-        }))} xLabel={'Expense Category'} yLabel={'Expense Amount'} title={`Expense Summary ${dateView}`}/>
+        }))} xLabel={'Expense Category'} yLabel={'Expense Amount'} title={`Expense Summary ${dateView}`}/>}
 </div>
 
-<PieChart
+{summaryInfo?.totalExpense != null ||  summaryInfo?.totalIncome != null  && <PieChart
   data={[
     { label: "Total Income", value: summaryInfo?.totalIncome },
     { label: "Total Expense", value: summaryInfo?.totalExpense },
     { label: "Total Balance", value: summaryInfo?.balance },
   ]}
   title={dateView}
-/>
+/>}
 {loading &&  <div className="loader-wrapper">
   <div className="loader"></div>
 </div>
