@@ -213,17 +213,6 @@ const columns = [
 },
  
 ];
-const data = [
-  {
-    key: '682f2214faffd3bf671de2d3',
-    title: 'John Brown',
-    category: "opeopeiroiewor uwew",
-    amount: 3000,
-    month:'2025/5'
-  },
- 
-];
-
 useEffect(()=>{
 onSubmit()
 },[])
@@ -274,7 +263,7 @@ localStorage.removeItem('name');
 
 
 <div className="as-on-container">
-  <div className="as-on-text">{dateView}</div>
+  <div className="as-on-text">Summarized Dashboard {dateView}</div>
 </div>
 
 
@@ -642,7 +631,7 @@ localStorage.removeItem('name');
         }))} xLabel={'Expense Category'} yLabel={'Expense Amount'} title={`Expense Summary ${dateView}`}/>}
 </div>
 
-{summaryInfo?.totalExpense != null ||  summaryInfo?.totalIncome != null  && <PieChart
+{summaryInfo?.totalExpense != 0 && <PieChart
   data={[
     { label: "Total Income", value: summaryInfo?.totalIncome },
     { label: "Total Expense", value: summaryInfo?.totalExpense },

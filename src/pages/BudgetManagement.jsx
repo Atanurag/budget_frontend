@@ -1,12 +1,13 @@
 import React, { useState, useContext, useEffect, useRef } from 'react';
 import { Button, Form, Input, Select, Card, Col, Row, DatePicker, TimePicker } from 'antd';
-import { useParams, useLocation, useNavigate, } from 'react-router-dom';
+import { useParams, useLocation, useNavigate,Link } from 'react-router-dom';
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faArrowLeft } from '@fortawesome/free-solid-svg-icons';
 import { handleAPICall, notificationDisplay } from "../components/Utils";
 import dayjs from 'dayjs';
 import '../css/Transaction.css';
 import '../css/Loading.css';
+const monthFormat = 'YYYY/MM';
 const BudgetManagement = () => {
 
   
@@ -79,7 +80,7 @@ const BudgetManagement = () => {
             <Row className="dashboard-filter">
                 <Col span={24}>
                     <Card className="org-header-container">
-                        <div className="org-header-text"> <FontAwesomeIcon icon={faArrowLeft} onClick={() => navigate(-1)} style={{ marginRight: 40, cursor: 'pointer' }} />
+                    <div className="org-header-text"> <Link to='/budget' ><FontAwesomeIcon icon={faArrowLeft}style={{ marginRight: 40, cursor: 'pointer',color:'black' }} /> </Link>  
                             {propType} {budgetDetail?.title}
                         </div>
                     </Card>
@@ -147,7 +148,7 @@ const BudgetManagement = () => {
                                 ]}
                                 hasFeedback
                             >
-                                <DatePicker  disabledDate={disabledDate} picker="month" style={{ width: '100%' }} />
+                                <DatePicker  disabledDate={disabledDate} picker="month" format ={monthFormat} style={{ width: '100%' }} />
                             </Form.Item>
                           
                             

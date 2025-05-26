@@ -19,7 +19,6 @@
 
 .top-strip-icon {
   font-size: 20px;
-  font-weight: bold;
 }
 
 .top-strip-right {
@@ -68,7 +67,9 @@
   display: flex;
   justify-content: flex-end;
   margin: 9px 6px;
+  gap:'4px';
 }
+
 
 .as-on-text {
   font-size: 14px;

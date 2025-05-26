@@ -1,6 +1,6 @@
 import React, { useState,useRef,useEffect } from 'react';
 import { DatePicker, Button,Table } from 'antd';
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link} from "react-router-dom";
 import { Input } from "antd";
 const { Search } = Input;
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -81,7 +81,9 @@ onSubmit()
 
     <div className="top-strip-card">
   <div className="top-strip-left">
-    <span className="top-strip-icon"><FontAwesomeIcon icon={faArrowLeft} onClick={() => navigate('/')} style={{ marginRight: 40, cursor: 'pointer' }} /></span>
+    <span className="top-strip-icon">
+    <Link to='/dashboard' ><FontAwesomeIcon icon={faArrowLeft}style={{ marginRight: 40, cursor: 'pointer',color:'black' }} /> </Link>  
+      </span>
   </div>
   <div className="top-strip-right">
     <DatePicker
@@ -104,7 +106,7 @@ onSubmit()
 
 
 <div className="as-on-container">
-  <div className="as-on-text">{dateView}</div>
+  <div className="as-on-text">Budget Dashboard {dateView}</div>
 </div>
 
 
@@ -121,7 +123,7 @@ onSubmit()
 </div>
     <div className="info-card-content">
       <div className="info-card-label">Budget Set</div>
-      <div className="info-card-value">₹ <CountUp delay={1} decimals={2} separator="," decimal="." end={budgetInfo.amount} /></div>
+      <div className="info-card-value">₹ <CountUp delay={1} decimals={2} separator="," decimal="." end={budgetInfo?.amount} /></div>
     </div>
   </div>
 
@@ -237,7 +239,7 @@ onSubmit()
 </div>
     <div className="info-card-content">
       <div className="info-card-label">Remainings</div>
-      <div className="info-card-value">₹ <CountUp delay={1} decimals={2} separator="," decimal="." end={budgetInfo.amount > expense ? budgetInfo.amount - expense : 0} /></div>
+      <div className="info-card-value">₹ <CountUp delay={1} decimals={2} separator="," decimal="." end={budgetInfo?.amount > expense ? budgetInfo?.amount - expense : 0} /></div>
 
 
     </div>
@@ -264,8 +266,9 @@ onSubmit()
 
 
 <div style={{display:'flex'}}>
+  {budgetInfo?.amount != undefined && 
 <DonutChart usedPercent={Math.round((expense / budgetInfo?.amount) * 100)} totalBudget={budgetInfo?.amount} title={`Budget Usage ${dateView}`} />
-
+}
 <BarChart chartData={expenseList.map(({ amount,category, ...rest }) => ({
          value: amount,
          name : category
