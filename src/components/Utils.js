@@ -55,12 +55,11 @@ export const handleAPICall = async (url, type, payload = {}, contentType = "appl
     const authToken = localStorage.getItem('token');
     const apiType = type.toUpperCase();
 
-    // To handle if user clears cache after authentication
-    // if(authToken === null && pathname !== '/login'){
-    //     // history.push('/login');
-    //     window.location.pathname = "/login";
-    //     return;
-    // }
+    //To handle if user clears cache after authentication
+    if(authToken === null && pathname !== '/login'){
+        window.location.pathname = "/login";
+        return;
+    }
 
     // To handle only basic method definitions for now
     if (!ALLOWED_METHODS.includes(apiType)) {
