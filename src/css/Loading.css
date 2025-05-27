@@ -3,12 +3,12 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    height: 100vh; /* full screen */
+    height: 100vh;
     position: fixed;
     top: 0;
     left: 0;
     width: 100vw;
-    background: rgba(255, 255, 255, 0.7); /* optional translucent bg */
+    background: rgba(255, 255, 255, 0.7);
     z-index: 9999;
   }
   

@@ -7,8 +7,8 @@ const BarChart = ({ chartData, xLabel, yLabel, title }) => {
 
   useEffect(() => {
     const margin = { top: 20, right: 20, bottom: 50, left: 60 };
-    const width = 400 - margin.left - margin.right;
-    const height = 250 - margin.top - margin.bottom;
+    const width = 500 - margin.left - margin.right;
+    const height = 350 - margin.top - margin.bottom;
 
     d3.select(chartRef.current).select("svg").remove();
 
@@ -39,7 +39,6 @@ const BarChart = ({ chartData, xLabel, yLabel, title }) => {
 
     svg.append("g").call(d3.axisLeft(y));
 
-    // X-Axis Label
     svg.append("text")
       .attr("text-anchor", "middle")
       .attr("x", width / 2)

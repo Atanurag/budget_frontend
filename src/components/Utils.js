@@ -1,11 +1,5 @@
 import { notification } from "antd";
 const ALLOWED_METHODS = ["GET","POST","PUT","DELETE"];
-
-/**
- * Common configuration for all notifications triggered
- * @param type String denoting the type of notification
- * @param description  String denoting the content of the notification
- */
 export const notificationDisplay = (type, description) => {
     let title = "";
     switch (type) {
@@ -39,29 +33,16 @@ export const notificationDisplay = (type, description) => {
     });
 };
 
-  
-/**
- * Uses fetch to make API calls, with basic handling
- * @param url String containing the API endpoint
- * @param type String containing the http method - GET, POST
- * @param payload Object containing payload for POST calls
- * @param contentType String to handle different content types required for the API
- * @returns json data object
- */
 export const handleAPICall = async (url, type, payload = {}, contentType = "application/json") => {
 
     const pathname = window.location.pathname.toLowerCase();
-    // const history = useHistory();
     const authToken = localStorage.getItem('token');
     const apiType = type.toUpperCase();
 
-    //To handle if user clears cache after authentication
     if(authToken === null && pathname !== '/login'){
         window.location.pathname = "/login";
         return;
     }
-
-    // To handle only basic method definitions for now
     if (!ALLOWED_METHODS.includes(apiType)) {
         console.error("This API type is not defined in handlingAPICAll");
         return;
@@ -81,7 +62,6 @@ export const handleAPICall = async (url, type, payload = {}, contentType = "appl
 
     let response = await fetch(url, options);
 
-    //To catch and throw server errors
     if (!response.ok) {
         let errMsg = "";
         switch (response.status) {

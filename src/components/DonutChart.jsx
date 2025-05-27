@@ -38,7 +38,6 @@ const DonutChart = ({ usedPercent, totalBudget , title }) => {
       .innerRadius(radius * 0.6)
       .outerRadius(radius);
 
-    // Tooltip div positioned absolutely inside container
     const tooltip = d3
       .select(chartRef.current)
       .append("div")
@@ -51,7 +50,7 @@ const DonutChart = ({ usedPercent, totalBudget , title }) => {
       .style("border-radius", "4px")
       .style("font-size", "13px")
       .style("pointer-events", "none")
-      .style("transform", "translate(-50%, -100%)") // center horizontally, position above
+      .style("transform", "translate(-50%, -100%)")
 
     svg
       .selectAll("path")
@@ -72,17 +71,15 @@ const DonutChart = ({ usedPercent, totalBudget , title }) => {
           )
           .style("opacity", 1);
 
-        // Calculate position for tooltip based on arc centroid
         const [x, y] = arc.centroid(d);
 
-        // Because svg group is centered in the div, position tooltip relative to container center + centroid
+       
         tooltip.style("left", `${width / 2 + x}px`).style("top", `${height / 2 + y - 10}px`);
       })
       .on("mouseout", () => {
         tooltip.style("opacity", 0);
       });
 
-    // Center Text
     svg
       .append("text")
       .attr("text-anchor", "middle")

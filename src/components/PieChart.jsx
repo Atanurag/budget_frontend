@@ -46,7 +46,6 @@ const PieChart = ({ data, title }) => {
       maximumFractionDigits: 0,
     });
 
-    // Draw pie slices
     svg
       .selectAll("path")
       .data(data_ready)
@@ -74,8 +73,6 @@ const PieChart = ({ data, title }) => {
         tooltip.style("opacity", 0);
       });
 
-    // Helper: Compute label positions to avoid overlap
-    // Split labels into left and right
     const labelsRight = [];
     const labelsLeft = [];
 
@@ -88,7 +85,6 @@ const PieChart = ({ data, title }) => {
       }
     });
 
-    // Function to adjust label Y positions to avoid overlap (simple vertical spacing)
     function adjustPositions(labels) {
       labels.sort((a, b) => {
         const aPos = outerArc.centroid(a)[1];
@@ -96,7 +92,7 @@ const PieChart = ({ data, title }) => {
         return aPos - bPos;
       });
 
-      let spacing = 14; // px spacing between labels
+      let spacing = 14;
       for (let i = 1; i < labels.length; i++) {
         const prevPos = labels[i-1].yPos || outerArc.centroid(labels[i-1])[1];
         let currentPos = outerArc.centroid(labels[i])[1];
@@ -105,7 +101,7 @@ const PieChart = ({ data, title }) => {
         }
         labels[i].yPos = currentPos;
       }
-      // For the first element, set yPos as centroid y
+      
       if (labels.length > 0) {
         labels[0].yPos = outerArc.centroid(labels[0])[1];
       }
@@ -114,10 +110,8 @@ const PieChart = ({ data, title }) => {
     adjustPositions(labelsRight);
     adjustPositions(labelsLeft);
 
-    // Combine back for drawing lines and texts
     const allLabels = [...labelsRight, ...labelsLeft];
 
-    // Draw polylines from slice to labels
     svg
       .selectAll("polyline")
       .data(allLabels)
@@ -127,14 +121,13 @@ const PieChart = ({ data, title }) => {
       .attr("stroke-width", 1)
       .attr("fill", "none")
       .attr("points", (d) => {
-        const posA = arc.centroid(d); // Slice center
-        const posB = outerArc.centroid(d); // Just outside slice
+        const posA = arc.centroid(d); 
+        const posB = outerArc.centroid(d);
         const midAngle = (d.startAngle + d.endAngle) / 2;
-        const posC = [radius * 1.15 * (midAngle < Math.PI ? 1 : -1), d.yPos]; // Fixed X on left or right, adjusted Y
+        const posC = [radius * 1.15 * (midAngle < Math.PI ? 1 : -1), d.yPos];
         return [posA, posB, posC];
       });
 
-    // Draw labels
     svg
       .selectAll("text")
       .data(allLabels)

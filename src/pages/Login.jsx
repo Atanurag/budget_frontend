@@ -1,37 +1,36 @@
 
 import { useEffect, useContext, useState, useRef } from "react";
-//import { useHistory } from "react-router-dom";
-import { Form, Input, Button, Card, Typography, Cascader, Select } from "antd";
+import { Form, Input, Button } from "antd";
 import "../css/Login.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faPhone, faUser, faCity, faRandom } from "@fortawesome/free-solid-svg-icons";
+import {  faUser} from "@fortawesome/free-solid-svg-icons";
 import dayjs from 'dayjs';
 import { handleAPICall, notificationDisplay } from "../components/Utils.js";
 import { useNavigate } from "react-router-dom";
 
 function Login() {
-
+  const [submitLoading, setSubmitLoading] = useState(false);
   const navigate = useNavigate();
   const [form] = Form.useForm();
   const onFinish = (values) => {
-   
+    setSubmitLoading(true);
     let url = `https://budget-backend-2xm2.onrender.com/api/users/login`;
     let postObj = {
       email: values.email,
       password: values.password,
     }
     handleAPICall(url, "POST", postObj).then(res => {
+      setSubmitLoading(false);
       if (res.status === "success") {
         navigate('/dashboard');
         localStorage.setItem('token', res.token);
         localStorage.setItem('name', res.user.name);
       }
       else {
-        notificationDisplay("info", res.message)
+        notificationDisplay("info", res.message);
       }
     }).catch((err) => {
       console.log(err.message)
-
     })
 
   }
@@ -100,8 +99,7 @@ function Login() {
                 type="primary"
                 htmlType="submit"
                 className="login-box-form-button"
-              // loading={isLoginClicked}
-              // disabled={isLoginClicked}
+                loading={submitLoading}
               >
                 Continue
               </Button>
@@ -113,15 +111,6 @@ function Login() {
 
 
       </div>
-
-
-
-
-
-
-
-
-
 
     </div>
   )
@@ -146,7 +135,6 @@ const styles = {
     display: "flex",
     justifyContent: "center",
     alignItems: "center",
-    //height: "100vh",
     borderRadius: '8px',
     background: '#fff'
   },

@@ -89,8 +89,7 @@
 }
 
 .info-card {
-  flex: 1 1 140px; /* Minimum width 240px, flexible */
-  /* max-width: 32%;  Ensures max 3 in a row on wide screens */
+  flex: 1 1 140px;
   background-color: #ffffff;
   display: flex;
   align-items: center;
