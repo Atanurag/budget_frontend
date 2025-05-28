@@ -94,10 +94,11 @@ This project will remain publicly available and hosted for at least 30 days post
 ### 4. Folder Structure
 src/
 │
-├── components/
-├── css/
-├── pages/
-└── App.jsx
+├── components/      
+├── pages/          
+├── css/          
+└── App.jsx           
+
 
 
 
