@@ -72,16 +72,16 @@ Use the following credentials to log in and test the app:
 
 ### 1. Clone the Repo
 ```
-git clone https://github.com/yourusername/personal-budget-tracker-frontend.git
-cd personal-budget-tracker-frontend
+git clone https://github.com/Atanurag/Budget_Frontend.git
+cd budget_frontend
 Install Dependencies
-npm install or pnpn install (if pnpm environment)
+npm install or pnpm install (if pnpm environment)
 Run the app
 npm start or pnpm start (if pnpm environment)
 ```
 ### 2. Assumptions 
 
-Each user can have only one budget per month.
+Each user can have one budget per month.
 
 Only authenticated users can manage transactions and budgets.
 
@@ -94,14 +94,10 @@ This project will remain publicly available and hosted for at least 30 days post
 ### 4. Folder Structure
 src/
 │
-├── components/     
-UI Components (Ant Design based)
-├── pages/          
-(Login, Dashboard, Budget)
-├── services/        # API request functions using Fetch API
-├── utils/           # Helpers, constants
-├── config.js        # API URL & other configs
-└── App.js           # Routing and layout
+├── components/
+├── css/
+├── pages/
+└── App.jsx
 
 
 
