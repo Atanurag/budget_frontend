@@ -17,9 +17,9 @@ Use the following credentials to log in and test the app:
 
 | Email              | Password  |
 |--------------------|-----------|
-| demo@budget.com     | demo123   |
-| testuser@example.com| test123   |
-| user1@budget.com    | password1 |
+| a@email.com     | 1234   |
+| b@email.com | 1234   |
+| c@email.com     | 1234 |
 
 
 ---
