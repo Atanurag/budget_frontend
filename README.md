@@ -92,12 +92,11 @@ App assumes that monthly calculations are done based on the selected month and y
 This project will remain publicly available and hosted for at least 30 days post submission.
 
 ### 4. Folder Structure
-src/
-│
-├── components/      
-├── pages/          
-├── css/          
-└── App.jsx           
+src/      
+├── components/              
+├── pages/                    
+├── css/                
+└── App.jsx                 
 
 ### 5. Images
 
