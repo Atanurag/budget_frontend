@@ -72,6 +72,8 @@ Use the following credentials to log in and test the app:
 
 ### 1. Clone the Repo
 ```
+Ensure Node.js is installed
+If Node.js is not installed, download and install it from: https://nodejs.org/
 git clone https://github.com/Atanurag/Budget_Frontend.git
 cd budget_frontend
 Install Dependencies
