@@ -72,8 +72,6 @@ Use the following credentials to log in and test the app:
 
 ### 1. Clone the Repo
 ```
-Ensure Node.js is installed
-If Node.js is not installed, download and install it from: https://nodejs.org/
 git clone https://github.com/Atanurag/Budget_Frontend.git
 cd budget_frontend
 Install Dependencies
@@ -94,28 +92,29 @@ App assumes that monthly calculations are done based on the selected month and y
 This project will remain publicly available and hosted for at least 30 days post submission.
 
 ### 4. Folder Structure
-src/      
-├── components/          
-├── pages/              
-├── css/              
-└── App.jsx               
+src/
+│
+├── components/      
+├── pages/          
+├── css/          
+└── App.jsx           
 
 ### 5. Images
 
- ![Model](https://raw.githubusercontent.com/Atanurag/budget_frontend/05d6e70ab0d61753781d492e8989a2a2eefb1463/page1.png)
+ ![Model](https://raw.githubusercontent.com/Atanurag/budget_frontend/refs/heads/main/img/page1.png)
 
- ![Model](https://raw.githubusercontent.com/Atanurag/budget_frontend/refs/heads/main/page2.png)
+ ![Model](https://raw.githubusercontent.com/Atanurag/budget_frontend/refs/heads/main/img/page2.png)
 
- ![Model](https://raw.githubusercontent.com/Atanurag/budget_frontend/refs/heads/main/page3.png)
+ ![Model](https://raw.githubusercontent.com/Atanurag/budget_frontend/refs/heads/main/img/page3.png)
 
-![Model](https://raw.githubusercontent.com/Atanurag/budget_frontend/refs/heads/main/page4.png)
+![Model](https://raw.githubusercontent.com/Atanurag/budget_frontend/refs/heads/main/img/page4.png)
 
-![Model](https://raw.githubusercontent.com/Atanurag/budget_frontend/refs/heads/main/page5.png)
+![Model](https://raw.githubusercontent.com/Atanurag/budget_frontend/refs/heads/main/img/page5.png)
 
-![Model](https://raw.githubusercontent.com/Atanurag/budget_frontend/refs/heads/main/page6.png)
+![Model](https://raw.githubusercontent.com/Atanurag/budget_frontend/refs/heads/main/img/page6.png)
 
-![Model](https://raw.githubusercontent.com/Atanurag/budget_frontend/refs/heads/main/page7.png)
+![Model](https://raw.githubusercontent.com/Atanurag/budget_frontend/refs/heads/main/img/page7.png)
 
-![Model](https://raw.githubusercontent.com/Atanurag/budget_frontend/refs/heads/main/page8.png)
+![Model](https://raw.githubusercontent.com/Atanurag/budget_frontend/refs/heads/main/img/page8.png)
 
-![Model](https://raw.githubusercontent.com/Atanurag/budget_frontend/refs/heads/main/page9.png)
+![Model](https://raw.githubusercontent.com/Atanurag/budget_frontend/refs/heads/main/img/page9.png)
