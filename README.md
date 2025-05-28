@@ -99,6 +99,9 @@ src/
 ├── css/          
 └── App.jsx           
 
+### 5. Images
+
+ ![Model](https://raw.githubusercontent.com/Atanurag/budget_frontend/05d6e70ab0d61753781d492e8989a2a2eefb1463/page1.png)
 
 
 
