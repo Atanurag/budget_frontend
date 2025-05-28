@@ -248,11 +248,11 @@ const Budget = () => {
 
 
 
-      <div className="edit-budget-text" onClick={() => {
+      {budgetInfo?._id != undefined && <div className="edit-budget-text" onClick={() => {
         navigate(`/budget/edit/${budgetInfo._id}`, { state: { propType: "Edit Budget" } })
       }
 
-      }>Edit {budgetInfo?.title} budget</div>
+      }>Edit {budgetInfo?.title}</div>}
 
 
       <div style={{ display: 'flex' }}>

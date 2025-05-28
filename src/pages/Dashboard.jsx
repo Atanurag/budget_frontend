@@ -82,7 +82,6 @@ const Dashboard = () => {
     })
   };
   const onChange = (date, dateString) => {
-    console.log(date, dateString);
     setBudgetMonth(date);
   };
   const disabledDate = (current) => {
@@ -229,7 +228,7 @@ const Dashboard = () => {
 
       <div className="top-strip-card">
         <div className="top-strip-left">
-          <span className="top-strip-icon">{localStorage.getItem('name')}</span>
+          <span className="top-strip-icon">{localStorage.getItem('name').split('')[0]}</span>
         </div>
         <div className="top-strip-right">
           <DatePicker

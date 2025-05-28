@@ -119,7 +119,7 @@ const BudgetManagement = () => {
                                 >
                                     <Input />
                                 </Form.Item>
-                                <Form.Item label="Amount" name="amount"
+                                <Form.Item label="Amount(₹)" name="amount"
                                     rules={[
                                         {
                                             required: true,
