@@ -26,6 +26,9 @@ const Dashboard = () => {
   const navigate = useNavigate();
 
   const onSubmit = () => {
+    if (localStorage.getItem('token') === null){
+      return navigate('/login');
+    }
     setLoading(true)
     const postObj = {
       date: budgetMonth.format('YYYY/MM'),
@@ -194,7 +197,6 @@ const Dashboard = () => {
   ];
   useEffect(() => {
     onSubmit();
-    if (localStorage.getItem('token') === null) navigate('/login');
   }, [])
 
   const onNewTxn = () => {
@@ -212,7 +214,7 @@ const Dashboard = () => {
     <>
       <div className="top-strip-card">
         <div className="top-strip-left">
-          <span className="top-strip-icon">{localStorage.getItem('name').split('')[0]}</span>
+          <span className="top-strip-icon">{localStorage.getItem('name')?.split('')[0]}</span>
         </div>
         <div className="top-strip-right">
           <DatePicker

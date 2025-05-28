@@ -23,6 +23,9 @@ const Budget = () => {
   const navigate = useNavigate();
 
   const onSubmit = () => {
+    if (localStorage.getItem('token') === null){
+      return navigate('/login');
+    }
     setLoading(true)
     const postObj = {
       date: budgetMonth.format('YYYY/MM'),
@@ -66,7 +69,6 @@ const Budget = () => {
 
   useEffect(() => {
     onSubmit();
-    if (localStorage.getItem('token') === null) navigate('/login');
   }, []);
 
   return (
