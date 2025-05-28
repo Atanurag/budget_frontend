@@ -103,5 +103,18 @@ src/
 
  ![Model](https://raw.githubusercontent.com/Atanurag/budget_frontend/05d6e70ab0d61753781d492e8989a2a2eefb1463/page1.png)
 
+ ![Model](https://raw.githubusercontent.com/Atanurag/budget_frontend/refs/heads/main/page2.png)
 
+ ![Model](https://raw.githubusercontent.com/Atanurag/budget_frontend/refs/heads/main/page3.png)
 
+![Model](https://raw.githubusercontent.com/Atanurag/budget_frontend/refs/heads/main/page4.png)
+
+![Model](https://raw.githubusercontent.com/Atanurag/budget_frontend/refs/heads/main/page5.png)
+
+![Model](https://raw.githubusercontent.com/Atanurag/budget_frontend/refs/heads/main/page6.png)
+
+![Model](https://raw.githubusercontent.com/Atanurag/budget_frontend/refs/heads/main/page7.png)
+
+![Model](https://raw.githubusercontent.com/Atanurag/budget_frontend/refs/heads/main/page8.png)
+
+![Model](https://raw.githubusercontent.com/Atanurag/budget_frontend/refs/heads/main/page9.png)
