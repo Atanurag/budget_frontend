@@ -1,12 +1,12 @@
-import React, { useState, useRef, useEffect } from 'react';
-import { DatePicker, Button, Table } from 'antd';
+import React, { useState, useEffect } from 'react';
+import { DatePicker, Button } from 'antd';
 import { useNavigate, Link } from "react-router-dom";
 import { Input } from "antd";
 const { Search } = Input;
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faArrowLeft } from "@fortawesome/free-solid-svg-icons";
 import dayjs from 'dayjs';
-import { handleAPICall, notificationDisplay } from "../components/Utils";
+import { handleAPICall } from "../components/Utils";
 import DonutChart from '../components/DonutChart';
 const monthFormat = 'YYYY/MM';
 import '../css/Budget.css';
@@ -14,7 +14,7 @@ import '../css/Loading.css';
 import CountUp from 'react-countup';
 import BarChart from '../components/BarChart.jsx'
 const Budget = () => {
-  const [budgetMonth, setBudgetMonth] = useState(dayjs('2025/05'));
+  const [budgetMonth, setBudgetMonth] = useState(dayjs('2025/06'));
   const [budgetInfo, setBudgetInfo] = useState({});
   const [expense, setExpense] = useState(0);
   const [expenseList, setExpenseList] = useState([]);
@@ -245,9 +245,6 @@ const Budget = () => {
           </div>
         </div>
       </div>
-
-
-
       {budgetInfo?._id != undefined && <div className="edit-budget-text" onClick={() => {
         navigate(`/budget/edit/${budgetInfo._id}`, { state: { propType: "Edit Budget" } })
       }
@@ -264,8 +261,6 @@ const Budget = () => {
           name: category
         }))} xLabel={'Expense Category'} yLabel={'Expense Amount'} title={`Expense Summary ${dateView}`} />
       </div>
-
-
 
       {loading && <div className="loader-wrapper">
         <div className="loader"></div>

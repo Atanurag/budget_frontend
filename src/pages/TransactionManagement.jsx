@@ -7,8 +7,8 @@ import { handleAPICall, notificationDisplay } from "../components/Utils";
 import dayjs from 'dayjs';
 import '../css/Transaction.css';
 import '../css/Loading.css';
+const monthFormat = 'YYYY/MM';
 const TransactionManagement = () => {
-    const monthFormat = 'YYYY/MM';
 
     const [form] = Form.useForm();
     const { transactionId } = useParams();
@@ -174,8 +174,6 @@ const TransactionManagement = () => {
                                 >
                                     <DatePicker disabledDate={disabledDate} picker="month" format={monthFormat} style={{ width: '100%' }} />
                                 </Form.Item>
-
-
                                 <Form.Item wrapperCol={{ span: 14, offset: 11 }}>
                                     <Button htmlType="submit" loading={submitLoading}>Submit</Button>
                                 </Form.Item>

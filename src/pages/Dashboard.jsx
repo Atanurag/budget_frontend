@@ -4,19 +4,18 @@ import { useNavigate } from "react-router-dom";
 import { Input } from "antd";
 const { Search } = Input;
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faSearch, faDownload, faTrash, faFileExcel, faPenToSquare, faCircleInfo } from "@fortawesome/free-solid-svg-icons";
+import { faSearch, faTrash, faPenToSquare, faCircleInfo } from "@fortawesome/free-solid-svg-icons";
 import dayjs from 'dayjs';
 import '../css/Dashboard.css';
 import '../css/Loading.css';
 import { handleAPICall, notificationDisplay } from "../components/Utils";
-import { SpaceContext } from 'antd/es/space';
 import CountUp from 'react-countup';
-const monthFormat = 'YYYY/MM';
 import BarChart from '../components/BarChart.jsx'
 import PieChart from '../components/PieChart.jsx';
+const monthFormat = 'YYYY/MM';
 
 const Dashboard = () => {
-  const [budgetMonth, setBudgetMonth] = useState(dayjs('2025/05'));
+  const [budgetMonth, setBudgetMonth] = useState(dayjs('2025/06'));
   const [summaryInfo, setSummaryInfo] = useState({});
   const [incomeList, setIncomeList] = useState([]);
   const [expenseList, setExpenseList] = useState([]);
@@ -67,18 +66,14 @@ const Dashboard = () => {
 
     handleAPICall(deleteUrl, "DELETE").then(res => {
       if (res.status === "success") {
-        console.log(res)
         notificationDisplay('success', res.message)
         onSubmit(budgetMonth);
-        setLoading(false)
+        setLoading(false);
       }
       else {
         notificationDisplay('error', res.message)
-        setLoading(false)
-
-
+        setLoading(false);
       }
-
     })
   };
   const onChange = (date, dateString) => {
@@ -193,13 +188,6 @@ const Dashboard = () => {
             icon={faTrash}
           />
         </Popconfirm>
-
-
-
-
-
-
-
       ),
     },
 
@@ -221,11 +209,6 @@ const Dashboard = () => {
   }
   return (
     <>
-
-
-
-
-
       <div className="top-strip-card">
         <div className="top-strip-left">
           <span className="top-strip-icon">{localStorage.getItem('name').split('')[0]}</span>
@@ -247,8 +230,6 @@ const Dashboard = () => {
           </Button>
           <Button className="top-strip-button" type="primary" style={{ backgroundColor: 'green' }} onClick={onBudget}>Access Your Budget</Button>
           <Button className="top-strip-button" type="danger" style={{ backgroundColor: '#bd2038' }} onClick={onLogout}>Logout</Button>
-
-
         </div>
       </div>
 
@@ -389,8 +370,6 @@ const Dashboard = () => {
                 </svg>
               </g>
             </svg>
-
-
           </div>
           <div className="info-card-content">
             <div className="info-card-label">Total Income</div>
