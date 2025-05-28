@@ -65,8 +65,9 @@ const Budget = () => {
   }
 
   useEffect(() => {
-    onSubmit()
-  }, [])
+    onSubmit();
+    if (localStorage.getItem('token') === null) navigate('/login');
+  }, []);
 
   return (
     <>

@@ -193,7 +193,8 @@ const Dashboard = () => {
 
   ];
   useEffect(() => {
-    onSubmit()
+    onSubmit();
+    if (localStorage.getItem('token') === null) navigate('/login');
   }, [])
 
   const onNewTxn = () => {
