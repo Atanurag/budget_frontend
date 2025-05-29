@@ -27,7 +27,9 @@ function Login() {
         localStorage.setItem('name', res.user.name);
       }
       else {
-        notificationDisplay("info", res.message);
+        notificationDisplay("error", res.message);
+        setSubmitLoading(false);
+        form.resetFields();
       }
     }).catch((err) => {
       console.log(err.message)
