@@ -28,6 +28,8 @@ function Login() {
       }
       else {
         notificationDisplay("info", res.message);
+        setSubmitLoading(false);
+
       }
     }).catch((err) => {
       console.log(err.message)
