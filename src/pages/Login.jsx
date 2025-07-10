@@ -10,8 +10,8 @@ import { useNavigate } from "react-router-dom";
 // import QrScanner from 'path/to/qr-scanner.min.js'; // if using plain es6 import
 // import QrScanner from 'qr-scanner'; 
 // import { Scanner } from '@yudiel/react-qr-scanner';
-import BarcodeScanner from "react-qr-barcode-scanner";
-
+// import BarcodeScanner from "react-qr-barcode-scanner";
+import BarcodeScanner from 'react-qr-barcode-scanner/dist/BarcodeScanner.js';
 function Login() {
   const [submitLoading, setSubmitLoading] = useState(false);
   const navigate = useNavigate();
