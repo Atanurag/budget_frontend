@@ -23,6 +23,7 @@ function Login() {
       email: values.email,
       password: values.password,
     }
+    
     handleAPICall(url, "POST", postObj).then(res => {
       setSubmitLoading(false);
       if (res.status === "success") {
