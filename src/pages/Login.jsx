@@ -9,7 +9,8 @@ import { handleAPICall, notificationDisplay } from "../components/Utils.js";
 import { useNavigate } from "react-router-dom";
 // import QrScanner from 'path/to/qr-scanner.min.js'; // if using plain es6 import
 // import QrScanner from 'qr-scanner'; 
-import { Scanner } from '@yudiel/react-qr-scanner';
+// import { Scanner } from '@yudiel/react-qr-scanner';
+import BarcodeScanner from "react-qr-barcode-scanner";
 
 function Login() {
   const [submitLoading, setSubmitLoading] = useState(false);
@@ -54,12 +55,13 @@ function Login() {
 //     { /* your options or returnDetailedScanResult: true if you're not specifying any other options */ },
 // );
 
+const [dataq, setDataq] = useState("Not Found");
 
 
   return (
     <div className="login-background" >
 
-<Scanner onScan={(result) => console.log(result)} />;
+{/* <Scanner onScan={(result) => console.log(result)} />; */}
 
 
 {/* 
@@ -74,7 +76,15 @@ function Login() {
 }}>button</button> */}
 
 
-
+<BarcodeScanner
+        width={500}
+        height={500}
+        onUpdate={(err, result) => {
+          if (result) setDataq(result.text);
+          else setDataq("Not Found");
+        }}
+      />
+      <p>{dataq}</p>
 
 
 
