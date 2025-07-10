@@ -60,7 +60,19 @@ const [dataq, setDataq] = useState("Not Found");
 
 
   return (
-    <div className="login-background" >
+   <>
+   
+   
+   <Button
+  type="primary"
+  htmlType="submit"
+  className="redeem-button"
+>
+  Redeem
+</Button>
+   
+   
+   <div className="login-background" >
 
 {/* <Scanner onScan={(result) => console.log(result)} />; */}
 
@@ -77,7 +89,7 @@ const [dataq, setDataq] = useState("Not Found");
 }}>button</button> */}
 
 
-<BarcodeScanner
+{/* <BarcodeScanner
         width={500}
         height={500}
         onUpdate={(err, result) => {
@@ -85,7 +97,7 @@ const [dataq, setDataq] = useState("Not Found");
           else setDataq("Not Found");
         }}
       />
-      <p>{dataq}</p>
+      <p>{dataq}</p> */}
 
 
 
@@ -165,6 +177,7 @@ const [dataq, setDataq] = useState("Not Found");
       </div>
 
     </div>
+    </>
   )
 }
 
