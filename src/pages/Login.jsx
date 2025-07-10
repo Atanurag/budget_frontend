@@ -7,6 +7,9 @@ import {  faUser} from "@fortawesome/free-solid-svg-icons";
 import dayjs from 'dayjs';
 import { handleAPICall, notificationDisplay } from "../components/Utils.js";
 import { useNavigate } from "react-router-dom";
+// import QrScanner from 'path/to/qr-scanner.min.js'; // if using plain es6 import
+// import QrScanner from 'qr-scanner'; 
+import { Scanner } from '@yudiel/react-qr-scanner';
 
 function Login() {
   const [submitLoading, setSubmitLoading] = useState(false);
@@ -43,8 +46,44 @@ function Login() {
     if (localStorage.getItem('token') != null) navigate('/dashboard');
   }, []);
 
+// const videoRef = React.useRef()
+
+//   const qrScanner = new QrScanner(
+//     videoRef.current,
+//     result => console.log('decoded qr code:', result),
+//     { /* your options or returnDetailedScanResult: true if you're not specifying any other options */ },
+// );
+
+
+
   return (
     <div className="login-background" >
+
+<Scanner onScan={(result) => console.log(result)} />;
+
+
+{/* 
+
+
+<video ref={videoRef}></video>
+
+
+<button onClick={()=>{
+  qrScanner.start();
+
+}}>button</button> */}
+
+
+
+
+
+
+
+
+
+
+
+
 
       <div className="login-box">
         <div className="login-box-text">
