@@ -1,45 +1,22 @@
+// File: src/App.jsx
 import React from 'react';
-import './index.css';
-import { Routes, Route } from 'react-router-dom';
-import Dashboard from './pages/Dashboard';
-import TransactionManagement from './pages/TransactionManagement';
-import Budget from './pages/Budget';
-import BudgetManagement from './pages/BudgetManagement';
-import Login from './pages/Login';
-const App = () => {
+import { BrowserRouter as Router, Routes, Route, NavLink } from 'react-router-dom';
+import DiscoveryPage from './pages/DiscoveryPage';
+import CollectionPage from './pages/CollectionPage';
 
+export default function App() {
   return (
-    <Routes>
-      <Route path="/login"
-        element={<Login />} />
-      <Route path="/"
-        element={<Login />} />
-
-      <Route path="/dashboard" element={<Dashboard />} />
-
-      <Route
-        path="/transaction/add"
-        element={<TransactionManagement />}
-      />
-      <Route
-        path="/transaction/edit/:transactionId"
-        element={<TransactionManagement />}
-      />
-      <Route path="/budget"
-        element={<Budget />} />
-
-
-      <Route
-        path="/budget/add"
-        element={<BudgetManagement />}
-      />
-      <Route
-        path="/budget/edit/:budgetId"
-        element={<BudgetManagement />}
-      />
-    </Routes>
-
+    <Router>
+      <div className="p-4">
+        <nav className="mb-4 space-x-4">
+          <NavLink to="/" className={({ isActive }) => isActive ? 'font-bold' : ''}>Discovery</NavLink>
+          <NavLink to="/collection" className={({ isActive }) => isActive ? 'font-bold' : ''}>My Collection</NavLink>
+        </nav>
+        <Routes>
+          <Route path="/" element={<DiscoveryPage />} />
+          <Route path="/collection" element={<CollectionPage />} />
+        </Routes>
+      </div>
+    </Router>
   );
-};
-
-export default App;
+}
