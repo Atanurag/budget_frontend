@@ -42,190 +42,391 @@ Keep it super simple and visual. Anyone should understand it easily.
 
 
 
+# 📋 Credentialing Components Analysis
 
+## 📊 Quick Summary
+- **Total Designs**: 20 screens analyzed
+- **🟢 Available**: 90 components (can reuse from scheduling)
+- **🔴 Missing**: 65 components (need to build)
+- **🟡 Needs Work**: 18 components (enhance existing)
 
+---
 
+## 🎨 Design 1: Coordinators Page
 
+**Components:**
+- 🟢 Navigation tabs | Complexity: XS | Reuse from toolbar.tsx
+- 🟢 Search input | Complexity: XS | Reuse from ui/input
+- 🟢 Add New Coordinator button | Complexity: XS | Reuse primary button
+- 🟢 Avatar images | Complexity: XS | Reuse Antd Avatar
+- 🟢 Phone & Email icons | Complexity: XS | Reuse from lucide-react
+- 🟢 Edit pencil icon | Complexity: XS | Reuse icon button
+- 🔴 Application count badge | Complexity: S | Build badge showing "5 Applications"
+- 🟡 Active status indicator | Complexity: S | Add "Active" with green dot
+- 🔴 Coordinator list item | Complexity: L | Build complete row layout
+- 🔴 Sortable table headers | Complexity: M | Add sort arrows to headers
 
+**Summary**: 6 Available | 3 Missing | 1 Needs Work
 
+---
 
+## 🎨 Design 2: Add New Coordinator Modal
 
+**Components:**
+- 🟢 Modal container | Complexity: XS | Reuse drawer/dialog
+- 🟢 Input fields (First/Last Name) | Complexity: XS | Reuse form inputs
+- 🟢 Email & Phone inputs | Complexity: XS | Reuse form inputs
+- 🟢 Save/Cancel buttons | Complexity: XS | Reuse button variants
 
+**Summary**: 4 Available | 0 Missing | 0 Needs Work
 
+---
 
+## 🎨 Design 3: Dashboard
 
-Design #,Page/Dashboard Name,Component Name,Status,Complexity,What to Do
-1,Coordinators Page,Navigation tabs,🟢 Available,XS,Reuse from toolbar.tsx
-1,Coordinators Page,Search input,🟢 Available,XS,Reuse from ui/input
-1,Coordinators Page,Add New Coordinator button,🟢 Available,XS,Reuse primary button
-1,Coordinators Page,Avatar images,🟢 Available,XS,Reuse Antd Avatar
-1,Coordinators Page,Phone & Email icons,🟢 Available,XS,Reuse from lucide-react
-1,Coordinators Page,Edit pencil icon,🟢 Available,XS,Reuse icon button
-1,Coordinators Page,Application count badge,🔴 Missing,S,Build badge showing "5 Applications"
-1,Coordinators Page,Active status indicator,🟡 Needs Work,S,Add "Active" with green dot
-1,Coordinators Page,Coordinator list item,🔴 Missing,L,Build complete row layout
-1,Coordinators Page,Sortable table headers,🔴 Missing,M,Add sort arrows to headers
-2,Add New Coordinator Modal,Modal container,🟢 Available,XS,Reuse drawer/dialog
-2,Add New Coordinator Modal,Input fields (First/Last Name),🟢 Available,XS,Reuse form inputs
-2,Add New Coordinator Modal,Email & Phone inputs,🟢 Available,XS,Reuse form inputs
-2,Add New Coordinator Modal,Save/Cancel buttons,🟢 Available,XS,Reuse button variants
-3,Dashboard,User greeting "Hello David 👋",🔴 Missing,M,Build greeting with avatar
-3,Dashboard,Search bar,🟢 Available,XS,Reuse search input
-3,Dashboard,Start New Application button,🟢 Available,XS,Reuse primary button
-3,Dashboard,Section header "Active Applications",🔴 Missing,S,Build section header
-3,Dashboard,Filter dropdowns (Status/Coordinator/Due Date),🟡 Needs Work,M,Combine into unified filter bar
-3,Dashboard,Coordinator group header (Mark Lee),🔴 Missing,M,Build group header with avatar
-3,Dashboard,Expandable chevron rows,🟢 Available,XS,Reuse expandable-row-header
-3,Dashboard,Application list items (provider rows),🔴 Missing,L,Build provider row component
-3,Dashboard,Three-dot action menu,🟢 Available,S,Reuse dropdown pattern
-3,Dashboard,Status badges (In-Progress/Under Review),🟡 Needs Work,S,Add new status variants
-3,Dashboard,Status badges (On Track/Falling Behind),🟡 Needs Work,S,Add new status variants
-3,Dashboard,Nested/indented table rows,🔴 Missing,M,Build nested row layout
-3,Dashboard,Alerts section header "Alerts 3",🔴 Missing,S,Build header with count
-3,Dashboard,Alert item cards (Clean Record/Issues Found),🔴 Missing,M,Build alert card component
-4,Provider Details - Basic Info,Breadcrumb (Providers > Provider Details),🔴 Missing,S,Build breadcrumb component
-4,Provider Details - Basic Info,Provider profile header,🔴 Missing,L,Build header with large avatar + name + status
-4,Provider Details - Basic Info,In-Progress status badge,🔴 Missing,S,Build status with blue dot
-4,Provider Details - Basic Info,Secondary tabs (Basic Info/Applications/etc),🟢 Available,M,Adapt existing tabs
-4,Provider Details - Basic Info,Send Message button,🟢 Available,XS,Reuse secondary button
-4,Provider Details - Basic Info,Three-dot dropdown,🟢 Available,XS,Reuse dropdown
-4,Provider Details - Basic Info,Key-value info display (Phone/Email/Address),🔴 Missing,M,Build label-value pairs
-4,Provider Details - Basic Info,Quick Links section,🔴 Missing,M,Build editable list section
-4,Provider Details - Basic Info,Editable list item (NPI/CAQH with icons),🔴 Missing,M,Build item with edit/copy/delete
-4,Provider Details - Basic Info,Edit/Copy/Delete icon buttons,🟢 Available,XS,Reuse icon buttons
-4,Provider Details - Basic Info,Add New link,🔴 Missing,S,Build "+ Add New" link
-5,Provider Details - Add Quick Link,Collapsible section with inline form,🔴 Missing,M,Build expandable section
-5,Provider Details - Add Quick Link,Inline form (Title + Value),🔴 Missing,M,Build inline form with Save/Cancel
-5,Provider Details - Add Quick Link,Input fields,🟢 Available,XS,Reuse text inputs
-5,Provider Details - Add Quick Link,Save/Cancel buttons,🟢 Available,XS,Reuse button variants
-6,Prepare Packet Modal,Modal container,🟢 Available,XS,Reuse dialog
-6,Prepare Packet Modal,Select Application dropdown,🟢 Available,XS,Reuse select
-6,Prepare Packet Modal,Cover Template dropdown,🟢 Available,XS,Reuse select
-6,Prepare Packet Modal,Checkboxes,🟢 Available,XS,Reuse checkbox
-6,Prepare Packet Modal,PDF file icons,🟢 Available,XS,Reuse lucide icons
-6,Prepare Packet Modal,Two-column layout (Available | Order in Packet),🔴 Missing,L,Build transfer list layout
-6,Prepare Packet Modal,Selectable document list (left column),🔴 Missing,M,Build list with checkboxes
-6,Prepare Packet Modal,Drag-drop reorderable list (right column),🔴 Missing,L,Build with drag handles (needs @dnd-kit)
-6,Prepare Packet Modal,Numbered document list,🔴 Missing,M,Build ordered list (1. 2. 3.)
-6,Prepare Packet Modal,Drag handles (≡),🔴 Missing,S,Add drag handle icons
-6,Prepare Packet Modal,Column headers with subtitle,🟡 Needs Work,S,Add subtitle pattern
-7,Documents Tab,Upload New Document button,🟢 Available,XS,Reuse secondary button
-7,Documents Tab,Add Required Document button,🟢 Available,XS,Reuse secondary button
-7,Documents Tab,Table structure,🟢 Available,XS,Reuse table component
-7,Documents Tab,Calendar icon,🟢 Available,XS,Reuse lucide icon
-7,Documents Tab,Set Expiration Date link,🔴 Missing,M,Build inline date picker link
-7,Documents Tab,Document row with expiration date,🔴 Missing,M,Build row with date metadata
-7,Documents Tab,Ready for Review status badge,🟡 Needs Work,S,Add purple dot variant
-7,Documents Tab,Missing document row with description,🔴 Missing,M,Build row with long text
-7,Documents Tab,Multi-section table (Uploaded + Missing),🔴 Missing,M,Build table with dividers
-8,Add Required Document Modal,Modal container,🟢 Available,XS,Reuse dialog
-8,Add Required Document Modal,Document Name input,🟢 Available,XS,Reuse text input
-8,Add Required Document Modal,Description textarea,🟢 Available,XS,Reuse textarea
-8,Add Required Document Modal,Character counter "0/500",🔴 Missing,XS,Build counter component
-8,Add Required Document Modal,Submit button,🟢 Available,XS,Reuse primary button
-8,Add Required Document Modal,View action link (blue),🔴 Missing,M,Build inline action link
-8,Add Required Document Modal,Delete action link (red),🔴 Missing,M,Build destructive link
-8,Add Required Document Modal,Request/Upload/Edit action links,🔴 Missing,S,Build action link variants
-8,Add Required Document Modal,Multiple action links in one cell,🟡 Needs Work,S,Create layout pattern
-9,Action Items Tab,Assign Action Item button,🟢 Available,XS,Reuse secondary button
-9,Action Items Tab,Action Items table,🟢 Available,XS,Reuse table
-9,Action Items Tab,Action item row (all columns),🔴 Missing,M,Build row with Application/Action/Target/Instructions/Status
-9,Action Items Tab,Multi-line instruction cell,🔴 Missing,S,Build cell with text wrapping
-9,Action Items Tab,Assigned status badge (purple dot),🟡 Needs Work,S,Add Assigned variant
-9,Action Items Tab,Double-dash placeholder "--",🟡 Needs Work,XS,Add empty state pattern
-10,Monitoring Tab,Add Document/Task links,🟢 Available,XS,Reuse add links
-10,Monitoring Tab,Expandable chevron rows,🟢 Available,XS,Reuse expandable component
-10,Monitoring Tab,Tracked elements table,🔴 Missing,L,Build credential tracking table
-10,Monitoring Tab,Multi-level nested tasks (3+ levels),🔴 Missing,XL,Build recursive nested component
-10,Monitoring Tab,Verification checks table,🔴 Missing,L,Build verification table
-10,Monitoring Tab,File link display (Screenshot01.jpg),🔴 Missing,S,Build clickable file link
-10,Monitoring Tab,Multi-level indentation CSS,🔴 Missing,M,Build indent depth styles
-10,Monitoring Tab,Active status (green dot),🟡 Needs Work,S,Add Active variant
-10,Monitoring Tab,Expiring Soon status (blue dot),🟡 Needs Work,S,Add Expiring Soon variant
-10,Monitoring Tab,Expired status (red dot),🟡 Needs Work,S,Add Expired variant
-10,Monitoring Tab,Complete status (green dot),🟡 Needs Work,S,Add Complete variant
-10,Monitoring Tab,Pending status (blue dot),🟡 Needs Work,S,Add Pending variant
-11,Applications Tab,Prepare Packet button,🟢 Available,XS,Reuse secondary button
-11,Applications Tab,Add New Application button,🟢 Available,XS,Reuse secondary button
-11,Applications Tab,Expandable Entity rows,🟢 Available,XS,Reuse expandable component
-11,Applications Tab,Three-dot menu,🟢 Available,XS,Reuse dropdown
-11,Applications Tab,PDF icons,🟢 Available,XS,Reuse file icons
-11,Applications Tab,Info icon with tooltip,🟢 Available,XS,Reuse tooltip
-11,Applications Tab,Upload button with icon,🟢 Available,XS,Reuse button
-11,Applications Tab,Nested detail panel (Entity A expanded),🔴 Missing,XL,Build nested expandable panel
-11,Applications Tab,Description with inline Edit link,🔴 Missing,M,Build description with edit
-11,Applications Tab,Document list table (Requirements & Templates),🔴 Missing,L,Build document table
-11,Applications Tab,Notes list component (Notes (2)),🔴 Missing,M,Build notes list
-11,Applications Tab,Note item card (date + description),🔴 Missing,S,Build note card
-11,Applications Tab,Application entity row,🔴 Missing,L,Build entity row with all columns
-11,Applications Tab,Count indicator badge "2 Notes",🔴 Missing,S,Build count badge
-11,Applications Tab,Review in Progress status (green dot),🟡 Needs Work,S,Add Review in Progress variant
-11,Applications Tab,Document tag badges (Blank/Completed),🟡 Needs Work,S,Add document tag variants
-11,Applications Tab,Section header with action link,🟡 Needs Work,S,Create header + link pattern
-12,Checklists Page,Add New Checklist button,🟢 Available,XS,Reuse primary button
-12,Checklists Page,Search input,🟢 Available,XS,Reuse search
-12,Checklists Page,Edit/Delete icons,🟢 Available,XS,Reuse icon buttons
-12,Checklists Page,Avatars in Created By,🟢 Available,XS,Reuse avatar
-12,Checklists Page,Checklist Title input,🟢 Available,XS,Reuse text input
-12,Checklists Page,Description textarea,🟢 Available,XS,Reuse textarea
-12,Checklists Page,Character counter "0/250",🟢 Available,XS,Reuse from previous
-12,Checklists Page,Close X button,🟢 Available,XS,Reuse drawer close
-12,Checklists Page,Wizard stepper navigation (1. 2. 3.),🔴 Missing,XL,Build multi-step wizard
-12,Checklists Page,Checklist table row (all columns),🔴 Missing,M,Build checklist row
-12,Checklists Page,Sortable headers with ↕ arrows,🔴 Missing,M,Build sortable headers
-12,Checklists Page,Field/Document count display,🔴 Missing,S,Build count badges
-12,Checklists Page,Step indicator with numbered circles,🔴 Missing,M,Build step indicator
-12,Checklists Page,Back button with left arrow,🟡 Needs Work,S,Add ghost button with icon
-12,Checklists Page,Wizard footer layout (Back/Next/Publish),🟡 Needs Work,S,Create footer button pattern
-13,Checklist Builder - Fields,Search input in palette,🟢 Available,XS,Reuse search
-13,Checklist Builder - Fields,Preview button,🟢 Available,XS,Reuse secondary button
-13,Checklist Builder - Fields,Publish Checklist button,🟢 Available,XS,Reuse primary button
-13,Checklist Builder - Fields,Field palette sidebar (left panel),🔴 Missing,L,Build field palette with categories
-13,Checklist Builder - Fields,Draggable field items (Full Name/Email/Phone),🔴 Missing,M,Build draggable field items
-13,Checklist Builder - Fields,Drag-drop zone canvas,🔴 Missing,XL,Build drop zone with placeholder
-13,Checklist Builder - Fields,Field group dividers (Grouped Elements/Basic),🔴 Missing,S,Build divider component
-13,Checklist Builder - Fields,Editable section title "+ Add Section Title",🔴 Missing,M,Build editable title
-13,Checklist Builder - Fields,ADD NEW SECTION button,🔴 Missing,S,Build add section button
-13,Checklist Builder - Fields,Field type icon set (A/envelope/phone/etc),🔴 Missing,M,Create field type icons
-13,Checklist Builder - Fields,Form builder canvas with preview,🔴 Missing,XL,Build canvas with live preview
-13,Checklist Builder - Fields,Split panel layout (palette | canvas),🟡 Needs Work,M,Create 2-column layout
-14,Checklist Builder - Properties,Toggle switches (Required/Allow multiple),🟢 Available,XS,Reuse switch component
-14,Checklist Builder - Properties,Delete icon (red),🟢 Available,XS,Reuse delete icon
-14,Checklist Builder - Properties,Dropped field with drag handle,🔴 Missing,L,Build dropped field component
-14,Checklist Builder - Properties,Field properties panel (right sidebar),🔴 Missing,L,Build properties panel
-14,Checklist Builder - Properties,Sublabel configuration (First Name | Last Name),🔴 Missing,M,Build sublabel config
-14,Checklist Builder - Properties,Multi-field preview,🔴 Missing,M,Build split field preview
-14,Checklist Builder - Properties,Property group with toggle + description,🔴 Missing,M,Build property group
-14,Checklist Builder - Properties,Three-column layout (palette | canvas | properties),🟡 Needs Work,M,Create 3-column layout
-15,Start Application - Select Entities,Select Provider dropdown,🟢 Available,XS,Reuse select
-15,Start Application - Select Entities,Radio buttons,🟢 Available,XS,Reuse radio inputs
-15,Start Application - Select Entities,Back/Next Step buttons,🟢 Available,XS,Reuse buttons
-15,Start Application - Select Entities,Wizard stepper,🟢 Available,XS,Reuse from previous
-15,Start Application - Select Entities,Entity list item (Valley Hospital + Privileging),🔴 Missing,M,Build entity item with sublabel
-15,Start Application - Select Entities,Entity type label (Privileging/Enrollment),🔴 Missing,S,Build type label
-16,Generate Checklist Summary,Back/Next buttons,🟢 Available,XS,Reuse buttons
-16,Generate Checklist Summary,Requirements summary list,🔴 Missing,L,Build summary with aggregation
-16,Generate Checklist Summary,Multi-entity tag display (Valley Hospital/BCBS),🔴 Missing,M,Build multi-tag component
-16,Generate Checklist Summary,Entity link badge (blue clickable pills),🔴 Missing,S,Build entity badge
-17,Upload Document Modal,Upload Document button,🟢 Available,XS,Reuse primary button
-17,Upload Document Modal,Document type dropdown,🟢 Available,XS,Reuse select
-17,Upload Document Modal,Drag & drop area,🟢 Available,XS,Reuse drop zone
-17,Upload Document Modal,Close X button,🟢 Available,XS,Reuse dialog close
-17,Upload Document Modal,File upload drop zone with icon,🔴 Missing,M,Build file drop zone (use react-dropzone)
-17,Upload Document Modal,Upload illustration icon (document + arrow),🔴 Missing,S,Create/source upload icon
-17,Upload Document Modal,File size limit text "Max file size 14MB",🔴 Missing,XS,Build helper text
-18,Extracted Fields View,Uploaded file card "External App.pdf",🔴 Missing,S,Build file card with icon
-18,Extracted Fields View,Extracted field list,🔴 Missing,L,Build auto-mapped field list
-18,Extracted Fields View,Field mapping row (field | AI-generated | Edit),🔴 Missing,M,Build mapping row
-18,Extracted Fields View,AI-generated status badge (blue),🔴 Missing,S,Build AI-generated badge
-18,Extracted Fields View,Edit link,🟢 Available,XS,Reuse from previous
-19,Field Validation,Field confirmation checkbox (blue checkmark),🔴 Missing,S,Build confirmation button
-19,Field Validation,Field removal button (X),🔴 Missing,S,Build removal button
-19,Field Validation,User-edited status badge,🔴 Missing,S,Build User-edited badge
-19,Field Validation,State transition logic (AI → User-edited),🟡 Needs Work,M,Create validation transitions
-20,Success Confirmation,Success modal,🟢 Available,XS,Reuse dialog
-20,Success Confirmation,Done button,🟢 Available,XS,Reuse primary button
-20,Success Confirmation,Success content (checkmark + message),🔴 Missing,S,Build success layout
+**Components:**
+- 🔴 User greeting "Hello David 👋" | Complexity: M | Build greeting with avatar
+- 🟢 Search bar | Complexity: XS | Reuse search input
+- 🟢 Start New Application button | Complexity: XS | Reuse primary button
+- 🔴 Section header "Active Applications" | Complexity: S | Build section header
+- 🟡 Filter dropdowns (Status/Coordinator/Due Date) | Complexity: M | Combine into unified filter bar
+- 🔴 Coordinator group header (Mark Lee) | Complexity: M | Build group header with avatar
+- 🟢 Expandable chevron rows | Complexity: XS | Reuse expandable-row-header
+- 🔴 Application list items (provider rows) | Complexity: L | Build provider row component
+- 🟢 Three-dot action menu | Complexity: S | Reuse dropdown pattern
+- 🟡 Status badges (In-Progress/Under Review) | Complexity: S | Add new status variants
+- 🟡 Status badges (On Track/Falling Behind) | Complexity: S | Add new status variants
+- 🔴 Nested/indented table rows | Complexity: M | Build nested row layout
+- 🔴 Alerts section header "Alerts 3" | Complexity: S | Build header with count
+- 🔴 Alert item cards | Complexity: M | Build alert card component
+
+**Summary**: 4 Available | 7 Missing | 3 Needs Work
+
+---
+
+## 🎨 Design 4: Provider Details - Basic Info
+
+**Components:**
+- 🔴 Breadcrumb (Providers > Provider Details) | Complexity: S | Build breadcrumb component
+- 🔴 Provider profile header | Complexity: L | Build header with large avatar + name + status
+- 🔴 In-Progress status badge | Complexity: S | Build status with blue dot
+- 🟢 Secondary tabs (Basic Info/Applications/etc) | Complexity: M | Adapt existing tabs
+- 🟢 Send Message button | Complexity: XS | Reuse secondary button
+- 🟢 Three-dot dropdown | Complexity: XS | Reuse dropdown
+- 🔴 Key-value info display (Phone/Email/Address) | Complexity: M | Build label-value pairs
+- 🔴 Quick Links section | Complexity: M | Build editable list section
+- 🔴 Editable list item (NPI/CAQH with icons) | Complexity: M | Build item with edit/copy/delete
+- 🟢 Edit/Copy/Delete icon buttons | Complexity: XS | Reuse icon buttons
+- 🔴 Add New link | Complexity: S | Build "+ Add New" link
+
+**Summary**: 4 Available | 7 Missing | 0 Needs Work
+
+---
+
+## 🎨 Design 5: Provider Details - Add Quick Link
+
+**Components:**
+- 🔴 Collapsible section with inline form | Complexity: M | Build expandable section
+- 🔴 Inline form (Title + Value) | Complexity: M | Build inline form with Save/Cancel
+- 🟢 Input fields | Complexity: XS | Reuse text inputs
+- 🟢 Save/Cancel buttons | Complexity: XS | Reuse button variants
+
+**Summary**: 2 Available | 2 Missing | 0 Needs Work
+
+---
+
+## 🎨 Design 6: Prepare Packet Modal
+
+**Components:**
+- 🟢 Modal container | Complexity: XS | Reuse dialog
+- 🟢 Select Application dropdown | Complexity: XS | Reuse select
+- 🟢 Cover Template dropdown | Complexity: XS | Reuse select
+- 🟢 Checkboxes | Complexity: XS | Reuse checkbox
+- 🟢 PDF file icons | Complexity: XS | Reuse lucide icons
+- 🔴 Two-column layout (Available | Order in Packet) | Complexity: L | Build transfer list layout
+- 🔴 Selectable document list (left column) | Complexity: M | Build list with checkboxes
+- 🔴 Drag-drop reorderable list (right column) | Complexity: L | Build with drag handles (needs @dnd-kit)
+- 🔴 Numbered document list | Complexity: M | Build ordered list (1. 2. 3.)
+- 🔴 Drag handles (≡) | Complexity: S | Add drag handle icons
+- 🟡 Column headers with subtitle | Complexity: S | Add subtitle pattern
+
+**Summary**: 5 Available | 5 Missing | 1 Needs Work
+
+---
+
+## 🎨 Design 7: Documents Tab
+
+**Components:**
+- 🟢 Upload New Document button | Complexity: XS | Reuse secondary button
+- 🟢 Add Required Document button | Complexity: XS | Reuse secondary button
+- 🟢 Table structure | Complexity: XS | Reuse table component
+- 🟢 Calendar icon | Complexity: XS | Reuse lucide icon
+- 🔴 Set Expiration Date link | Complexity: M | Build inline date picker link
+- 🔴 Document row with expiration date | Complexity: M | Build row with date metadata
+- 🟡 Ready for Review status badge | Complexity: S | Add purple dot variant
+- 🔴 Missing document row with description | Complexity: M | Build row with long text
+- 🔴 Multi-section table (Uploaded + Missing) | Complexity: M | Build table with dividers
+
+**Summary**: 4 Available | 4 Missing | 1 Needs Work
+
+---
+
+## 🎨 Design 8: Add Required Document Modal
+
+**Components:**
+- 🟢 Modal container | Complexity: XS | Reuse dialog
+- 🟢 Document Name input | Complexity: XS | Reuse text input
+- 🟢 Description textarea | Complexity: XS | Reuse textarea
+- 🔴 Character counter "0/500" | Complexity: XS | Build counter component
+- 🟢 Submit button | Complexity: XS | Reuse primary button
+- 🔴 View action link (blue) | Complexity: M | Build inline action link
+- 🔴 Delete action link (red) | Complexity: M | Build destructive link
+- 🔴 Request/Upload/Edit action links | Complexity: S | Build action link variants
+- 🟡 Multiple action links in one cell | Complexity: S | Create layout pattern
+
+**Summary**: 4 Available | 4 Missing | 1 Needs Work
+
+---
+
+## 🎨 Design 9: Action Items Tab
+
+**Components:**
+- 🟢 Assign Action Item button | Complexity: XS | Reuse secondary button
+- 🟢 Action Items table | Complexity: XS | Reuse table
+- 🔴 Action item row (all columns) | Complexity: M | Build row with Application/Action/Target/Instructions/Status
+- 🔴 Multi-line instruction cell | Complexity: S | Build cell with text wrapping
+- 🟡 Assigned status badge (purple dot) | Complexity: S | Add Assigned variant
+- 🟡 Double-dash placeholder "--" | Complexity: XS | Add empty state pattern
+
+**Summary**: 2 Available | 2 Missing | 2 Needs Work
+
+---
+
+## 🎨 Design 10: Monitoring Tab
+
+**Components:**
+- 🟢 Add Document/Task links | Complexity: XS | Reuse add links
+- 🟢 Expandable chevron rows | Complexity: XS | Reuse expandable component
+- 🔴 Tracked elements table | Complexity: L | Build credential tracking table
+- 🔴 Multi-level nested tasks (3+ levels) | Complexity: XL | Build recursive nested component
+- 🔴 Verification checks table | Complexity: L | Build verification table
+- 🔴 File link display (Screenshot01.jpg) | Complexity: S | Build clickable file link
+- 🔴 Multi-level indentation CSS | Complexity: M | Build indent depth styles
+- 🟡 Active status (green dot) | Complexity: S | Add Active variant
+- 🟡 Expiring Soon status (blue dot) | Complexity: S | Add Expiring Soon variant
+- 🟡 Expired status (red dot) | Complexity: S | Add Expired variant
+- 🟡 Complete status (green dot) | Complexity: S | Add Complete variant
+- 🟡 Pending status (blue dot) | Complexity: S | Add Pending variant
+
+**Summary**: 2 Available | 5 Missing | 5 Needs Work
+
+---
+
+## 🎨 Design 11: Applications Tab
+
+**Components:**
+- 🟢 Prepare Packet button | Complexity: XS | Reuse secondary button
+- 🟢 Add New Application button | Complexity: XS | Reuse secondary button
+- 🟢 Expandable Entity rows | Complexity: XS | Reuse expandable component
+- 🟢 Three-dot menu | Complexity: XS | Reuse dropdown
+- 🟢 PDF icons | Complexity: XS | Reuse file icons
+- 🟢 Info icon with tooltip | Complexity: XS | Reuse tooltip
+- 🟢 Upload button with icon | Complexity: XS | Reuse button
+- 🔴 Nested detail panel (Entity A expanded) | Complexity: XL | Build nested expandable panel
+- 🔴 Description with inline Edit link | Complexity: M | Build description with edit
+- 🔴 Document list table (Requirements & Templates) | Complexity: L | Build document table
+- 🔴 Notes list component (Notes (2)) | Complexity: M | Build notes list
+- 🔴 Note item card (date + description) | Complexity: S | Build note card
+- 🔴 Application entity row | Complexity: L | Build entity row with all columns
+- 🔴 Count indicator badge "2 Notes" | Complexity: S | Build count badge
+- 🟡 Review in Progress status (green dot) | Complexity: S | Add Review in Progress variant
+- 🟡 Document tag badges (Blank/Completed) | Complexity: S | Add document tag variants
+- 🟡 Section header with action link | Complexity: S | Create header + link pattern
+
+**Summary**: 7 Available | 7 Missing | 3 Needs Work
+
+---
+
+## 🎨 Design 12: Checklists Page
+
+**Components:**
+- 🟢 Add New Checklist button | Complexity: XS | Reuse primary button
+- 🟢 Search input | Complexity: XS | Reuse search
+- 🟢 Edit/Delete icons | Complexity: XS | Reuse icon buttons
+- 🟢 Avatars in Created By | Complexity: XS | Reuse avatar
+- 🟢 Checklist Title input | Complexity: XS | Reuse text input
+- 🟢 Description textarea | Complexity: XS | Reuse textarea
+- 🟢 Character counter "0/250" | Complexity: XS | Reuse from previous
+- 🟢 Close X button | Complexity: XS | Reuse drawer close
+- 🔴 Wizard stepper navigation (1. 2. 3.) | Complexity: XL | Build multi-step wizard
+- 🔴 Checklist table row (all columns) | Complexity: M | Build checklist row
+- 🔴 Sortable headers with ↕ arrows | Complexity: M | Build sortable headers
+- 🔴 Field/Document count display | Complexity: S | Build count badges
+- 🔴 Step indicator with numbered circles | Complexity: M | Build step indicator
+- 🟡 Back button with left arrow | Complexity: S | Add ghost button with icon
+- 🟡 Wizard footer layout (Back/Next/Publish) | Complexity: S | Create footer button pattern
+
+**Summary**: 8 Available | 5 Missing | 2 Needs Work
+
+---
+
+## 🎨 Design 13: Checklist Builder - Fields
+
+**Components:**
+- 🟢 Search input in palette | Complexity: XS | Reuse search
+- 🟢 Preview button | Complexity: XS | Reuse secondary button
+- 🟢 Publish Checklist button | Complexity: XS | Reuse primary button
+- 🔴 Field palette sidebar (left panel) | Complexity: L | Build field palette with categories
+- 🔴 Draggable field items (Full Name/Email/Phone) | Complexity: M | Build draggable field items
+- 🔴 Drag-drop zone canvas | Complexity: XL | Build drop zone with placeholder
+- 🔴 Field group dividers (Grouped Elements/Basic) | Complexity: S | Build divider component
+- 🔴 Editable section title "+ Add Section Title" | Complexity: M | Build editable title
+- 🔴 ADD NEW SECTION button | Complexity: S | Build add section button
+- 🔴 Field type icon set (A/envelope/phone/etc) | Complexity: M | Create field type icons
+- 🔴 Form builder canvas with preview | Complexity: XL | Build canvas with live preview
+- 🟡 Split panel layout (palette | canvas) | Complexity: M | Create 2-column layout
+
+**Summary**: 3 Available | 8 Missing | 1 Needs Work
+
+---
+
+## 🎨 Design 14: Checklist Builder - Properties
+
+**Components:**
+- 🟢 Toggle switches (Required/Allow multiple) | Complexity: XS | Reuse switch component
+- 🟢 Delete icon (red) | Complexity: XS | Reuse delete icon
+- 🔴 Dropped field with drag handle | Complexity: L | Build dropped field component
+- 🔴 Field properties panel (right sidebar) | Complexity: L | Build properties panel
+- 🔴 Sublabel configuration (First Name | Last Name) | Complexity: M | Build sublabel config
+- 🔴 Multi-field preview | Complexity: M | Build split field preview
+- 🔴 Property group with toggle + description | Complexity: M | Build property group
+- 🟡 Three-column layout (palette | canvas | properties) | Complexity: M | Create 3-column layout
+
+**Summary**: 2 Available | 5 Missing | 1 Needs Work
+
+---
+
+## 🎨 Design 15: Start Application - Select Entities
+
+**Components:**
+- 🟢 Select Provider dropdown | Complexity: XS | Reuse select
+- 🟢 Radio buttons | Complexity: XS | Reuse radio inputs
+- 🟢 Back/Next Step buttons | Complexity: XS | Reuse buttons
+- 🟢 Wizard stepper | Complexity: XS | Reuse from previous
+- 🔴 Entity list item (Valley Hospital + Privileging) | Complexity: M | Build entity item with sublabel
+- 🔴 Entity type label (Privileging/Enrollment) | Complexity: S | Build type label
+
+**Summary**: 4 Available | 2 Missing | 0 Needs Work
+
+---
+
+## 🎨 Design 16: Generate Checklist Summary
+
+**Components:**
+- 🟢 Back/Next buttons | Complexity: XS | Reuse buttons
+- 🔴 Requirements summary list | Complexity: L | Build summary with aggregation
+- 🔴 Multi-entity tag display (Valley Hospital/BCBS) | Complexity: M | Build multi-tag component
+- 🔴 Entity link badge (blue clickable pills) | Complexity: S | Build entity badge
+
+**Summary**: 1 Available | 3 Missing | 0 Needs Work
+
+---
+
+## 🎨 Design 17: Upload Document Modal
+
+**Components:**
+- 🟢 Upload Document button | Complexity: XS | Reuse primary button
+- 🟢 Document type dropdown | Complexity: XS | Reuse select
+- 🟢 Drag & drop area | Complexity: XS | Reuse drop zone
+- 🟢 Close X button | Complexity: XS | Reuse dialog close
+- 🔴 File upload drop zone with icon | Complexity: M | Build file drop zone (use react-dropzone)
+- 🔴 Upload illustration icon (document + arrow) | Complexity: S | Create/source upload icon
+- 🔴 File size limit text "Max file size 14MB" | Complexity: XS | Build helper text
+
+**Summary**: 4 Available | 3 Missing | 0 Needs Work
+
+---
+
+## 🎨 Design 18: Extracted Fields View
+
+**Components:**
+- 🔴 Uploaded file card "External App.pdf" | Complexity: S | Build file card with icon
+- 🔴 Extracted field list | Complexity: L | Build auto-mapped field list
+- 🔴 Field mapping row (field | AI-generated | Edit) | Complexity: M | Build mapping row
+- 🔴 AI-generated status badge (blue) | Complexity: S | Build AI-generated badge
+- 🟢 Edit link | Complexity: XS | Reuse from previous
+
+**Summary**: 1 Available | 4 Missing | 0 Needs Work
+
+---
+
+## 🎨 Design 19: Field Validation
+
+**Components:**
+- 🔴 Field confirmation checkbox (blue checkmark) | Complexity: S | Build confirmation button
+- 🔴 Field removal button (X) | Complexity: S | Build removal button
+- 🔴 User-edited status badge | Complexity: S | Build User-edited badge
+- 🟡 State transition logic (AI → User-edited) | Complexity: M | Create validation transitions
+
+**Summary**: 0 Available | 3 Missing | 1 Needs Work
+
+---
+
+## 🎨 Design 20: Success Confirmation
+
+**Components:**
+- 🟢 Success modal | Complexity: XS | Reuse dialog
+- 🟢 Done button | Complexity: XS | Reuse primary button
+- 🔴 Success content (checkmark + message) | Complexity: S | Build success layout
+
+**Summary**: 2 Available | 1 Missing | 0 Needs Work
+
+---
+
+## 🚀 Quick Start - Build These First (Easiest Components)
+
+### XS Complexity - Super Easy:
+1. Character counter "0/500" (Design 8)
+2. File size limit helper text (Design 17)
+3. Double-dash placeholder "--" (Design 9)
+
+### S Complexity - Easy:
+1. Application count badge (Design 1)
+2. Section header components (Designs 3, 20)
+3. Add New link (Design 4)
+4. Breadcrumb navigation (Design 4)
+5. In-Progress status badge (Design 4)
+6. Status badge variants (Designs 3, 9, 10)
+
+### M Complexity - Medium:
+1. Key-value info display (Design 4)
+2. User greeting component (Design 3)
+3. Coordinator group header (Design 3)
+
+---
+
+## 📝 Notes for Team
+
+**Smart/Dumb Architecture:**
+Every component must have:
+- **Dumb Component**: UI only (presentation)
+- **Smart Container**: Business logic and state
+
+**Example:**
+- `ApplicationItem.tsx` (dumb - just renders)
+- `ApplicationItemContainer.tsx` (smart - fetches data, handles actions)
+
+**Libraries Needed:**
+- `@dnd-kit/core` for drag-and-drop features
+- `react-dropzone` for file uploads
+- `date-fns` for date handling
+
+---
+
+**Document Created**: October 22, 2025  
+**Analyst**: Anurag Tiwari  
+**Status**: Ready for team review
+
 
 
 
