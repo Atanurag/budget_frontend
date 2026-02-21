@@ -12,6 +12,7 @@
     "@yudiel/react-qr-scanner": "^2.3.1",
     "antd": "^5.5.1",
     "axios": "^1.11.0",
+    "canvas-confetti": "^1.9.4",
     "d3": "^7.9.0",
     "dayjs": "^1.11.7",
     "qr-scanner": "^1.4.2",
