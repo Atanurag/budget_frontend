@@ -8,9 +8,9 @@ export default function App() {
   const [voucherTime, setVoucherTime] = useState(86400);
   const [answers, setAnswers] = useState({});
   const [toast, setToast] = useState(false);
-  const [uniqueId] = useState(
-    "ID" + Math.floor(Math.random() * 999999)
-  );
+  const [attempts, setAttempts] = useState(0);
+  const [errorMsg, setErrorMsg] = useState("");
+  const [uniqueId] = useState("ID" + Math.floor(Math.random() * 999999));
 
   const couponCode = "TECH-SCHOLAR-50";
 
@@ -52,6 +52,8 @@ export default function App() {
   const startQuiz = (course) => {
     setSelectedCourse(course);
     setAnswers({});
+    setAttempts(0);
+    setErrorMsg("");
     setTimeLeft(60);
     setScreen("quiz");
   };
@@ -60,7 +62,7 @@ export default function App() {
     const quiz = quizzes[selectedCourse];
 
     if (Object.keys(answers).length !== quiz.length) {
-      alert("Please answer all questions.");
+      setErrorMsg("Please answer all questions.");
       return;
     }
 
@@ -68,13 +70,23 @@ export default function App() {
 
     if (correct) {
       confetti({
-        particleCount: 200,
-        spread: 120,
+        particleCount: 300,
+        spread: 150,
         origin: { y: 0.6 }
       });
-    }
+      setScreen("result");
+    } else {
+      const newAttempts = attempts + 1;
+      setAttempts(newAttempts);
 
-    setScreen("result");
+      if (newAttempts >= 3) {
+        alert("Maximum attempts reached.");
+        setScreen("home");
+      } else {
+        setErrorMsg(`Wrong answers. Attempts left: ${3 - newAttempts}`);
+        setAnswers({});
+      }
+    }
   };
 
   const copyCode = () => {
@@ -93,21 +105,31 @@ export default function App() {
   return (
     <div className="app">
 
+      {/* HOME */}
       {screen === "home" && (
-        <>
-          <h1 className="title">Unlock Your Tech Scholarship</h1>
-          {Object.keys(quizzes).map((course) => (
-            <div key={course} className="card" onClick={() => startQuiz(course)}>
-              {course}
-            </div>
-          ))}
-        </>
+        <div className="centerScreen">
+          <h1 className="mainTitle">Unlock Your Tech Scholarship</h1>
+
+          <div className="card blue" onClick={() => startQuiz("Computer Basics")}>
+            💻 Computer Basics
+          </div>
+
+          <div className="card purple" onClick={() => startQuiz("MS Office + Tally")}>
+            📊 MS Office + Tally
+          </div>
+
+          <div className="card gradient" onClick={() => startQuiz("Software Engineering + Data Science")}>
+            🚀 Software Engineering + Data Science
+          </div>
+        </div>
       )}
 
+      {/* QUIZ */}
       {screen === "quiz" && (
-        <>
+        <div>
           <div className="timer">⏳ {timeLeft}s</div>
           <h2>{selectedCourse}</h2>
+
           {quizzes[selectedCourse].map((item, index) => (
             <div key={index} className="questionBox">
               <p>{item.q}</p>
@@ -122,20 +144,38 @@ export default function App() {
               ))}
             </div>
           ))}
+
+          {errorMsg && <div className="error">{errorMsg}</div>}
+
           <button className="btnPrimary" onClick={checkResult}>Submit</button>
-        </>
+        </div>
       )}
 
+      {/* RESULT */}
       {screen === "result" && (
-        <>
-          <h1>🎉 Congratulations!</h1>
+        <div className="centerScreen">
+          <h1 className="congrats">🎉 Congratulations!</h1>
 
           <div className="voucher">
-            <div className="voucherHeader">LIMITED OFFER</div>
-            <h2>50% OFF on {selectedCourse} with AI</h2>
-            <div className="validity">Valid for 24 Hours Only</div>
-            <div className="countdown">{formatTime(voucherTime)}</div>
-            <div className="codeBox">{couponCode}</div>
+
+            <div className="offerBadge">🔥 LIMITED OFFER</div>
+
+            <h2 className="offerTitle">
+              50% OFF on {selectedCourse} with AI
+            </h2>
+
+            <div className="validity">
+              ⏳ Valid for 24 Hours Only
+            </div>
+
+            <div className="countdown pulse">
+              {formatTime(voucherTime)}
+            </div>
+
+            <div className="couponTicket">
+              {couponCode}
+            </div>
+
           </div>
 
           <button
@@ -155,58 +195,78 @@ export default function App() {
           </button>
 
           {toast && <div className="toast">Copied!</div>}
-        </>
+        </div>
       )}
+
+      <div className="footer">Made with ❤️</div>
 
       <style>{`
         body {
           margin: 0;
           font-family: 'Segoe UI', sans-serif;
-          background: #0d0d0d;
+          background: radial-gradient(circle at top,#1c1c2e,#0f0f1a);
           color: white;
         }
+
         .app {
           max-width: 420px;
           margin: auto;
           padding: 20px;
+          min-height: 100vh;
+          display: flex;
+          flex-direction: column;
+          justify-content: space-between;
         }
-        .title {
+
+        .centerScreen {
+          display: flex;
+          flex-direction: column;
+          justify-content: center;
+          align-items: center;
           text-align: center;
-          margin-bottom: 30px;
-          font-weight: 600;
+          flex: 1;
         }
+
+        .mainTitle {
+          margin-bottom: 30px;
+          font-weight: 700;
+          font-size: 22px;
+        }
+
         .card {
-          background: linear-gradient(145deg,#1a1a1a,#111);
-          padding: 20px;
+          width: 100%;
+          padding: 18px;
           margin-bottom: 15px;
           border-radius: 18px;
-          text-align: center;
+          font-weight: 600;
           cursor: pointer;
-          transition: 0.3s;
-          box-shadow: 0 8px 25px rgba(0,0,0,0.6);
+          transition: 0.3s ease;
+          box-shadow: 0 10px 25px rgba(0,0,0,0.4);
         }
+
         .card:hover {
-          transform: scale(1.04);
+          transform: translateY(-4px);
         }
-        .timer {
-          text-align: right;
-          font-weight: bold;
-          color: #ff5252;
-        }
-        .questionBox {
-          margin-bottom: 20px;
-        }
+
+        .blue { background: linear-gradient(135deg,#4facfe,#00f2fe); }
+        .purple { background: linear-gradient(135deg,#a18cd1,#fbc2eb); color:black;}
+        .gradient { background: linear-gradient(135deg,#ff9966,#ff5e62); }
+
+        .timer { text-align: right; font-weight: bold; color: #ff4d6d; }
+
         .option {
-          background: #1f1f1f;
+          background: #1f1f2e;
           padding: 12px;
           border-radius: 12px;
           margin-top: 8px;
           cursor: pointer;
           transition: 0.3s;
         }
+
         .option.selected {
-          background: #6c63ff;
+          background: #4facfe;
         }
+
         .btnPrimary, .btnSecondary {
           width: 100%;
           padding: 14px;
@@ -214,11 +274,11 @@ export default function App() {
           border-radius: 14px;
           border: none;
           cursor: pointer;
+          font-weight: bold;
         }
-        .btnPrimary {
-          background: #6c63ff;
-          color: white;
-        }
+
+        .btnPrimary { background: #6c63ff; color: white; }
+
         .btnWhatsApp {
           width: 100%;
           padding: 15px;
@@ -229,55 +289,153 @@ export default function App() {
           font-weight: bold;
           font-size: 16px;
           color: white;
-          cursor: pointer;
         }
+
         .voucher {
-          background: linear-gradient(135deg,#ffd700,#ffb300);
-          color: black;
-          padding: 25px;
-          border-radius: 22px;
-          margin-top: 25px;
+          position: relative;
+          background: linear-gradient(135deg,#ff8a00,#ff0080);
+          padding: 28px;
+          border-radius: 24px;
+          margin: 25px 0;
           text-align: center;
-          box-shadow: 0 15px 40px rgba(255,215,0,0.4);
-          animation: fadeIn 0.6s ease;
+          color: white;
+          box-shadow: 0 20px 50px rgba(255,0,128,0.4);
+          overflow: hidden;
         }
-        .voucherHeader {
-          font-size: 12px;
-          letter-spacing: 2px;
-          font-weight: bold;
+
+        .voucher::before {
+          content: "";
+          position: absolute;
+          top: -100%;
+          left: -50%;
+          width: 200%;
+          height: 300%;
+          background: linear-gradient(
+            120deg,
+            rgba(255,255,255,0.1) 0%,
+            rgba(255,255,255,0.4) 50%,
+            rgba(255,255,255,0.1) 100%
+          );
+          transform: rotate(25deg);
+          animation: shine 4s infinite;
         }
-        .validity {
-          margin-top: 10px;
-          font-weight: bold;
-          color: #b00020;
+
+        @keyframes shine {
+          0% { top: -100%; }
+          100% { top: 100%; }
         }
-        .countdown {
-          margin-top: 5px;
-          font-size: 18px;
-          font-weight: bold;
-        }
-        .codeBox {
-          margin-top: 15px;
+
+        .offerBadge {
+          display: inline-block;
           background: black;
-          color: #ffd700;
-          padding: 12px;
+          color: #ff0080;
+          padding: 6px 14px;
+          border-radius: 20px;
+          font-size: 12px;
+          font-weight: bold;
+          margin-bottom: 12px;
+        }
+
+        @keyframes pulseBadge {
+          0% { transform: scale(1); }
+          50% { transform: scale(1.1); }
+          100% { transform: scale(1); }
+        }
+
+        .offerTitle {
+          font-size: 18px;
+          font-weight: 700;
+          margin-bottom: 10px;
+        }
+
+        .validity { font-size: 14px; margin-bottom: 8px; }
+
+        .countdown { font-size: 20px; font-weight: bold; margin-bottom: 15px; }
+
+        .pulse { animation: blink 1s infinite; }
+
+        @keyframes blink {
+          0% { opacity: 1; }
+          50% { opacity: 0.6; }
+          100% { opacity: 1; }
+        }
+
+        .couponTicket {
+          background: white;
+          color: #ff0080;
+          padding: 14px;
           border-radius: 12px;
           font-weight: bold;
+          font-size: 16px;
+          position: relative;
+          margin-top: 10px;
         }
+
+        .couponTicket::before,
+        .couponTicket::after {
+          content: "";
+          position: absolute;
+          top: 50%;
+          width: 18px;
+          height: 18px;
+          background: #ff8a00;
+          border-radius: 50%;
+          transform: translateY(-50%);
+        }
+
+        .couponTicket::before { left: -9px; }
+        .couponTicket::after { right: -9px; }
+
+        .error { color: #ff4d6d; margin-top: 10px; }
+
+        .footer {
+          text-align: center;
+          margin-top: 20px;
+          opacity: 0.7;
+          font-size: 13px;
+        }
+
         .toast {
           position: fixed;
-          bottom: 20px;
+          bottom: 30px;
           left: 50%;
           transform: translateX(-50%);
           background: #333;
           padding: 10px 20px;
           border-radius: 20px;
         }
-        @keyframes fadeIn {
-          from { opacity: 0; transform: translateY(20px); }
-          to { opacity: 1; transform: translateY(0); }
-        }
       `}</style>
     </div>
   );
 }
+
+
+// // File: src/App.jsx
+// import React from 'react';
+// import { BrowserRouter as Router, Routes, Route, NavLink } from 'react-router-dom';
+// import { QueryClient, QueryClientProvider } from '@tanstack/react-query'; // ✅ Add this
+// import DiscoveryPage from './pages/DiscoveryPage';
+// import CollectionPage from './pages/CollectionPage';
+
+// const queryClient = new QueryClient(); // ✅ Create client
+
+// export default function App() {
+//   return (
+//     <QueryClientProvider client={queryClient}> {/* ✅ Wrap app */}
+//       <Router>
+//         <div className="p-4">
+//           <nav className="mb-4 space-x-4">
+//             <NavLink to="/" className={({ isActive }) => isActive ? 'font-bold' : ''}>Discovery</NavLink>
+//             <NavLink to="/collection" className={({ isActive }) => isActive ? 'font-bold' : ''}>My Collection</NavLink>
+//           </nav>
+//           <Routes>
+//             <Route path="/" element={<DiscoveryPage />} />
+//             <Route path="/collection" element={<CollectionPage />} />
+//           </Routes>
+//         </div>
+//       </Router>
+//     </QueryClientProvider>
+//   );
+// }
+
+
